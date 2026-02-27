@@ -1,0 +1,13 @@
+﻿<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E4F3F0"/>
+      <stop offset="1" stop-color="#C6E7E1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="220" y="160" width="760" height="480" rx="34" fill="#F8FCFB" stroke="#A5D6CC" stroke-width="8"/>
+  <circle cx="600" cy="360" r="82" fill="#0E9F93" opacity="0.2"/>
+  <path d="M562 358L594 390L640 334" stroke="#0E9F93" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="500" text-anchor="middle" fill="#0F3B3F" font-family="Arial, sans-serif" font-size="52" font-weight="700">Image Placeholder</text>
+</svg>
