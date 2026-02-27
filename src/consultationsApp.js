@@ -2,7 +2,6 @@ import './styles/main.css'
 import {
   addToCart,
   clearCart,
-  createProductCartItem,
   formatMoney,
   getCart,
   getCartCount,
@@ -12,41 +11,58 @@ import {
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
 import { escapeHtml, focusTrap, scrollLock } from './components/utils.js'
-import { SITE_CONTENT } from './data/content.js'
 
-function supplementCardTemplate(supplement) {
-  const stockBadgeClass = supplement.inStock ? 'easy' : 'advanced'
-  const stockText = supplement.inStock ? 'In Stock' : 'Out of Stock'
+function consultationCardTemplate(consultation) {
+  const cardIcon = consultation.icon || 'calendar'
 
   return `
-    <article class="protocol-card supplement-card">
+    <article class="protocol-card consultation-card">
       <div class="protocol-header">
-        <h3>${escapeHtml(supplement.name)}</h3>
-        <p class="protocol-subtitle">${escapeHtml(supplement.subtitle || 'Premium Supplement')}</p>
+        <div class="consultation-header-top">
+          <span class="consultation-icon-box">${icon(cardIcon)}</span>
+          ${
+            consultation.popular
+              ? `<span class="popular-badge">${icon('badge')} Popular</span>`
+              : ''
+          }
+        </div>
+        <h3>${escapeHtml(consultation.title)}</h3>
+        <p class="protocol-subtitle">${escapeHtml(consultation.subtitle)}</p>
       </div>
       <div class="protocol-body">
-        <div class="supplement-image-placeholder">
-          <img src="${escapeHtml(supplement.image)}" alt="${escapeHtml(supplement.name)} placeholder" class="supplement-placeholder-visual" />
-          <span class="supplement-image-label">Image Placeholder</span>
+        <p class="protocol-description">${escapeHtml(consultation.excerpt)}</p>
+        <div class="consultation-meta-list">
+          <div class="consultation-meta-row">
+            <span class="consultation-meta-label">${icon('clock')} Duration</span>
+            <span class="consultation-meta-value">${escapeHtml(consultation.duration)}</span>
+          </div>
+          <div class="consultation-meta-row">
+            <span class="consultation-meta-label">${icon('video')} Delivery</span>
+            <span class="consultation-meta-value">${escapeHtml(consultation.delivery)}</span>
+          </div>
         </div>
-        <p class="protocol-description">${escapeHtml(supplement.shortDescription)}</p>
-        <div class="protocol-details">
-          <div class="detail-item duration-row">
-            ${icon('clock')}
-            <span class="duration-text">${escapeHtml(supplement.duration || '30 Days')}</span>
-          </div>
-          <div class="detail-item">
-            <span class="difficulty-badge ${stockBadgeClass}">${stockText}</span>
-          </div>
-          <div class="detail-item price-row">
-            <span class="protocol-price">${formatMoney(supplement.price)}</span>
-          </div>
+        <div class="consultation-price-block">
+          <span class="consultation-price">${formatMoney(consultation.price)}</span>
+          ${
+            consultation.originalPrice
+              ? `<span class="consultation-old-price">${formatMoney(consultation.originalPrice)}</span>`
+              : ''
+          }
+          ${
+            consultation.saveNote
+              ? `<span class="consultation-save-note">${escapeHtml(consultation.saveNote)}</span>`
+              : ''
+          }
         </div>
         <div class="protocol-actions">
-          <button class="btn btn-secondary" data-open-product="${escapeHtml(supplement.id)}" aria-label="View ${escapeHtml(supplement.name)} details">
+          <button class="btn btn-secondary" data-open-consultation-item="${escapeHtml(
+            consultation.id
+          )}" aria-label="View ${escapeHtml(consultation.title)} details">
             ${icon('info')} Details
           </button>
-          <button class="btn btn-primary" data-quick-add-product="${escapeHtml(supplement.id)}" aria-label="Add ${escapeHtml(supplement.name)} to cart">
+          <button class="btn btn-primary" data-add-consultation="${escapeHtml(
+            consultation.id
+          )}" aria-label="Add ${escapeHtml(consultation.title)} to cart">
             ${icon('cart')} Add
           </button>
         </div>
@@ -54,22 +70,52 @@ function supplementCardTemplate(supplement) {
     </article>
   `
 }
-function paginationTemplate(currentPage, totalPages) {
+
+function consultationModalTemplate(consultation) {
+  const cardIcon = consultation.icon || 'calendar'
   return `
-    <div class="pagination">
-      <span class="pagination-info">Page ${currentPage} of ${totalPages}</span>
-      <div class="pagination-controls">
-        <button class="pagination-button" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
-        <button class="pagination-button" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
+    <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon(
+      'close'
+    )}</button>
+    <div class="consultation-modal-hero">
+      <span class="consultation-icon-box large">${icon(cardIcon)}</span>
+    </div>
+    <div class="modal-body">
+      <h2>${escapeHtml(consultation.title)}</h2>
+      <p class="modal-subtitle">${escapeHtml(consultation.subtitle)}</p>
+      <p class="modal-price">${formatMoney(consultation.price)}</p>
+      ${
+        consultation.originalPrice
+          ? `<p class="consultation-old-price">${formatMoney(consultation.originalPrice)}</p>`
+          : ''
+      }
+      ${
+        consultation.saveNote
+          ? `<p class="consultation-save-note">${escapeHtml(consultation.saveNote)}</p>`
+          : ''
+      }
+      <p>${escapeHtml(consultation.description || consultation.excerpt)}</p>
+      <div class="consultation-meta-list modal-meta">
+        <div class="consultation-meta-row">
+          <span class="consultation-meta-label">${icon('clock')} Duration</span>
+          <span class="consultation-meta-value">${escapeHtml(consultation.duration)}</span>
+        </div>
+        <div class="consultation-meta-row">
+          <span class="consultation-meta-label">${icon('video')} Delivery</span>
+          <span class="consultation-meta-value">${escapeHtml(consultation.delivery)}</span>
+        </div>
       </div>
+      <button class="btn btn-cart block" type="button" data-add-consultation-cart="${escapeHtml(
+        consultation.id
+      )}">
+        ${icon('cart')}Add to Cart - ${formatMoney(consultation.price)}
+      </button>
     </div>
   `
 }
 
-function renderSupplementsLayout(content) {
-  const { brand, contact, supplementsPage, supplements } = content
-  const productsPerPage = 12
-  const totalPages = Math.ceil(supplements.length / productsPerPage)
+function renderConsultationsLayout(content) {
+  const { brand, contact, consultationsPage, consultations } = content
 
   return `
     <div class="site-wrap">
@@ -78,8 +124,7 @@ function renderSupplementsLayout(content) {
           <img src="${escapeHtml(brand.logo)}" alt="Dr. William Makis logo" class="brand-logo" />
           <span class="brand-text">Dr. William <strong>Makis</strong></span>
         </a>
-        
-        <!-- Main Navigation -->
+
         <nav class="main-nav" aria-label="Main navigation">
           <a href="/#expertise" class="nav-link">Expertise</a>
           <a href="/#protocols" class="nav-link">Protocols</a>
@@ -90,58 +135,38 @@ function renderSupplementsLayout(content) {
         </nav>
 
         <div class="header-actions" aria-label="Site controls">
-          <!-- Language Selector -->
           <button class="language-selector" aria-label="Select language">
             <span class="language-text">US EN</span>
             ${icon('chevronDown')}
           </button>
-          
-          <!-- Shopping Cart -->
+
           <button class="icon-button cart-open" aria-label="Open cart" data-open-cart>
             ${icon('cart')}
             <span class="cart-count js-cart-count" aria-live="polite">0</span>
           </button>
-          
-          <!-- Patient Portal -->
+
           <button class="btn btn-secondary patient-portal" aria-label="Open patient portal">Patient Portal</button>
-          
-          <!-- Book Consultation -->
+
           <button class="btn btn-primary book-consultation" aria-label="Book a consultation" data-open-consultation>
             Book Consultation
           </button>
-          
-          <!-- Mobile Menu Button -->
+
           <button class="icon-button" aria-label="Open menu" data-open-nav>${icon('menu')}</button>
         </div>
       </header>
 
       <main id="top">
-        <section class="hero-section section-panel content-shell" id="supplements-hero">
+        <section class="hero-section section-panel content-shell" id="consultations-hero">
           <div class="hero-content">
-            <h1>${escapeHtml(supplementsPage.hero.title)}</h1>
-            <p>${escapeHtml(supplementsPage.hero.subtitle)}</p>
+            <h1>${escapeHtml(consultationsPage.hero.title)}</h1>
+            <p>${escapeHtml(consultationsPage.hero.subtitle)}</p>
           </div>
         </section>
 
-        <section class="section-panel content-shell" id="products">
-          <div class="section-header">
-            <div class="search-bar">
-              <input type="text" id="searchInput" class="search-input" placeholder="Search supplements..." aria-label="Search supplements">
-              <select id="stockFilter" class="difficulty-filter">
-                <option value="All">All Stock</option>
-                <option value="In Stock">In Stock</option>
-                <option value="Out of Stock">Out of Stock</option>
-              </select>
-              <button class="btn btn-primary apply-filters" data-apply-filters>Apply Filters</button>
-              <button class="btn btn-secondary reset-filters" data-reset-filters>Reset</button>
-            </div>
+        <section class="section-panel content-shell" id="consultations">
+          <div class="consultations-grid">
+            ${consultations.map(consultationCardTemplate).join('')}
           </div>
-
-          <div class="supplements-grid">
-            ${supplements.slice(0, productsPerPage).map(supplementCardTemplate).join('')}
-          </div>
-
-          ${paginationTemplate(1, totalPages)}
         </section>
       </main>
 
@@ -176,7 +201,9 @@ function renderSupplementsLayout(content) {
           <div>
             <h3>Contact</h3>
             <ul>
-              <li>${icon('telegram')} <a href="${escapeHtml(contact.telegramUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(contact.telegramHandle)}</a></li>
+              <li>${icon('telegram')} <a href="${escapeHtml(
+    contact.telegramUrl
+  )}" target="_blank" rel="noopener noreferrer">${escapeHtml(contact.telegramHandle)}</a></li>
               <li>${icon('mail')} <a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a></li>
               <li>${escapeHtml(content.footer.todo)}</li>
             </ul>
@@ -185,7 +212,9 @@ function renderSupplementsLayout(content) {
 
         <div class="footer-bottom">
           <p>${escapeHtml(content.footer.copyright)}</p>
-          <div class="legal-links">${content.footer.legal.map((item) => `<a href="#">${escapeHtml(item)}</a>`).join('')}</div>
+          <div class="legal-links">${content.footer.legal
+            .map((item) => `<a href="#">${escapeHtml(item)}</a>`)
+            .join('')}</div>
         </div>
       </footer>
 
@@ -206,6 +235,7 @@ function renderSupplementsLayout(content) {
         <a href="/" data-nav-link>Home</a>
         <a href="/supplements.html" data-nav-link>Supplements</a>
         <a href="/protocols.html" data-nav-link>Protocols</a>
+        <a href="/consultations/" data-nav-link>Consultations</a>
         <a href="/#shop" data-nav-link>Shop by Category</a>
         <a href="/#expertise" data-nav-link>Our Expertise</a>
         <a href="/#protocols" data-nav-link>Treatment Protocols</a>
@@ -233,48 +263,51 @@ function renderSupplementsLayout(content) {
       <div class="detail-modal-panel js-modal-content"></div>
     </div>
 
-    <!-- Book Consultation Modal -->
     <div class="overlay" data-overlay="consultation" hidden></div>
     <div class="consultation-modal" data-modal="consultation" hidden role="dialog" aria-modal="true" aria-label="Book a consultation">
       <div class="consultation-modal-panel">
-        <button class="icon-button close-btn modal-close" data-close-consultation aria-label="Close consultation form">${icon('close')}</button>
+        <button class="icon-button close-btn modal-close" data-close-consultation aria-label="Close consultation form">${icon(
+          'close'
+        )}</button>
         <div class="modal-header">
           <span class="modal-icon">${icon('calendar')}</span>
           <h2>Book a Consultation</h2>
           <p class="modal-subtitle">Schedule a consultation with Dr. Makis to discuss your treatment options</p>
         </div>
-        
+
         <form class="consultation-form" data-consultation-form>
           <div class="form-group">
             <label for="fullName">Full Name *</label>
             <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
           </div>
-          
+
           <div class="form-group">
             <label for="email">Email Address *</label>
             <input type="email" id="email" name="email" required placeholder="Enter your email address">
           </div>
-          
+
           <div class="form-group">
             <label for="phone">Phone Number *</label>
             <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
           </div>
-          
+
           <div class="form-group">
             <label for="consultationType">Consultation Type *</label>
             <select id="consultationType" name="consultationType" required>
               <option value="">Select a consultation type</option>
               <option value="initial">Initial Consultation</option>
               <option value="follow-up">Follow-up Consultation</option>
-              <option value="second-opinion">Second Opinion</option>
+              <option value="protocol-review">Protocol Review</option>
+              <option value="supplement-selection">Supplement Selection</option>
+              <option value="extended-package">Extended Package</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="preferredDate">Preferred Date *</label>
             <input type="date" id="preferredDate" name="preferredDate" required>
           </div>
-          
+
           <div class="form-group">
             <label for="preferredTime">Preferred Time *</label>
             <select id="preferredTime" name="preferredTime" required>
@@ -288,16 +321,16 @@ function renderSupplementsLayout(content) {
               <option value="16:00">4:00 PM</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label for="additionalInfo">Additional Information</label>
             <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Please provide any additional information about your condition or questions you may have"></textarea>
           </div>
-          
+
           <div class="form-actions">
             <button type="submit" class="btn btn-primary block">Request Consultation</button>
           </div>
-          
+
           <p class="hipaa-note">
             ${icon('shield')} Your information is protected by HIPAA compliance standards
           </p>
@@ -307,32 +340,10 @@ function renderSupplementsLayout(content) {
   `
 }
 
-function productModalTemplate(product) {
-  return `
-    <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
-    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="modal-hero" />
-    <div class="modal-body">
-      <h2>${escapeHtml(product.name)}</h2>
-      <p class="modal-price">${formatMoney(product.price)}</p>
-      <p>${escapeHtml(product.description)}</p>
+export function mountConsultationsApp(root, content) {
+  root.innerHTML = renderConsultationsLayout(content)
 
-      <div class="trust-row">
-        <span>${icon('box')}Quality Tested</span>
-        <span>${icon('shield')}Safe & Secure</span>
-        <span>${icon('truck')}Fast Shipping</span>
-      </div>
-
-      <button class="btn btn-cart block" type="button" data-add-product-cart="${escapeHtml(product.id)}">${icon('cart')}Add to Cart - ${formatMoney(product.price)}</button>
-    </div>
-  `
-}
-
-export function mountSupplementsApp(root, content) {
-  root.innerHTML = renderSupplementsLayout(content)
-
-  const products = new Map(content.supplements.map((item) => [item.id, item]))
-  const productsPerPage = 12
-  const totalPages = Math.ceil(content.supplements.length / productsPerPage)
+  const consultations = new Map(content.consultations.map((item) => [item.id, item]))
 
   const overlays = {
     nav: root.querySelector('[data-overlay="nav"]'),
@@ -354,63 +365,6 @@ export function mountSupplementsApp(root, content) {
   const state = {
     activeSurface: null,
     previousFocus: null,
-    currentPage: 1,
-    totalPages: totalPages,
-    currentFilter: 'All',
-    searchTerm: '',
-  }
-
-  function renderProducts() {
-    let filteredSupplements = content.supplements
-
-    if (state.searchTerm) {
-      const searchLower = state.searchTerm.toLowerCase()
-      filteredSupplements = filteredSupplements.filter((supplement) =>
-        supplement.name.toLowerCase().includes(searchLower) ||
-        supplement.subtitle.toLowerCase().includes(searchLower) ||
-        supplement.shortDescription.toLowerCase().includes(searchLower)
-      )
-    }
-
-    if (state.currentFilter === 'In Stock') {
-      filteredSupplements = filteredSupplements.filter((supplement) => supplement.inStock)
-    } else if (state.currentFilter === 'Out of Stock') {
-      filteredSupplements = filteredSupplements.filter((supplement) => !supplement.inStock)
-    }
-
-    state.totalPages = Math.ceil(filteredSupplements.length / productsPerPage)
-    if (state.currentPage > state.totalPages) {
-      state.currentPage = Math.max(1, state.totalPages)
-    }
-
-    const start = (state.currentPage - 1) * productsPerPage
-    const end = start + productsPerPage
-    const pageSupplements = filteredSupplements.slice(start, end)
-
-    const supplementsGrid = root.querySelector('.supplements-grid')
-    if (supplementsGrid) {
-      supplementsGrid.innerHTML = pageSupplements.map(supplementCardTemplate).join('')
-    }
-
-    const paginationContainer = root.querySelector('.pagination')
-    if (paginationContainer) {
-      paginationContainer.innerHTML = paginationTemplate(state.currentPage, state.totalPages)
-    }
-
-    const stockFilter = root.querySelector('#stockFilter')
-    if (stockFilter) {
-      stockFilter.value = state.currentFilter
-    }
-
-    const searchInput = root.querySelector('#searchInput')
-    if (searchInput) {
-      searchInput.value = state.searchTerm
-    }
-  }
-  function updatePagination(page) {
-    if (page < 1 || page > state.totalPages) return
-    state.currentPage = page
-    renderProducts()
   }
 
   function updateCartCount() {
@@ -556,39 +510,39 @@ export function mountSupplementsApp(root, content) {
     }
   }
 
-  function openProductModal(productId, trigger) {
-    const product = products.get(productId)
-    if (!product) return
+  function openConsultationItemModal(consultationId, trigger) {
+    const consultation = consultations.get(consultationId)
+    if (!consultation) return
 
-    modalContent.innerHTML = productModalTemplate(product)
+    modalContent.innerHTML = consultationModalTemplate(consultation)
     openSurface('modal', trigger)
   }
 
-  function addProduct(productId) {
-    const product = products.get(productId)
-    if (!product) return
-    addToCart(createProductCartItem(product))
+  function addConsultationToCart(consultationId) {
+    const consultation = consultations.get(consultationId)
+    if (!consultation) return
+
+    addToCart({
+      id: consultation.id,
+      type: 'protocol',
+      title: consultation.title,
+      price: consultation.price,
+      image: consultation.image || '/placeholders/card-placeholder.svg',
+      quantity: 1,
+    })
     renderCart()
   }
 
   root.addEventListener('submit', (event) => {
     if (event.target.matches('[data-consultation-form]')) {
       event.preventDefault()
-      
-      // Get form data
+
       const formData = new FormData(event.target)
       const data = Object.fromEntries(formData)
-      
-      // Placeholder for actual form submission
       console.log('Consultation request submitted:', data)
-      
-      // Show success message (placeholder)
+
       alert('Thank you for your consultation request! We will contact you shortly to confirm your appointment.')
-      
-      // Close the modal
       closeSurface('consultation')
-      
-      // Reset the form
       event.target.reset()
     }
   })
@@ -596,48 +550,6 @@ export function mountSupplementsApp(root, content) {
   root.addEventListener('click', (event) => {
     const target = event.target instanceof HTMLElement ? event.target : null
     if (!target) return
-    const applyFiltersBtn = target.closest('[data-apply-filters]')
-    if (applyFiltersBtn) {
-      const searchInput = root.querySelector('#searchInput')
-      const stockFilter = root.querySelector('#stockFilter')
-
-      state.searchTerm = searchInput ? searchInput.value.trim() : ''
-      state.currentFilter = stockFilter ? stockFilter.value : 'All'
-      state.currentPage = 1
-      renderProducts()
-      return
-    }
-
-    const resetFiltersBtn = target.closest('[data-reset-filters]')
-    if (resetFiltersBtn) {
-      const searchInput = root.querySelector('#searchInput')
-      const stockFilter = root.querySelector('#stockFilter')
-
-      if (searchInput) {
-        searchInput.value = ''
-      }
-
-      if (stockFilter) {
-        stockFilter.value = 'All'
-      }
-
-      state.searchTerm = ''
-      state.currentFilter = 'All'
-      state.currentPage = 1
-      renderProducts()
-      return
-    }
-
-    const pageButton = target.closest('[data-page]')
-    if (pageButton) {
-      const action = pageButton.getAttribute('data-page')
-      if (action === 'prev') {
-        updatePagination(state.currentPage - 1)
-      } else if (action === 'next') {
-        updatePagination(state.currentPage + 1)
-      }
-      return
-    }
 
     const openNavBtn = target.closest('[data-open-nav]')
     if (openNavBtn) {
@@ -688,24 +600,24 @@ export function mountSupplementsApp(root, content) {
       return
     }
 
-    const openProductBtn = target.closest('[data-open-product]')
-    if (openProductBtn) {
-      const productId = openProductBtn.getAttribute('data-open-product')
-      if (productId) openProductModal(productId, openProductBtn)
+    const openConsultationItemBtn = target.closest('[data-open-consultation-item]')
+    if (openConsultationItemBtn) {
+      const consultationId = openConsultationItemBtn.getAttribute('data-open-consultation-item')
+      if (consultationId) openConsultationItemModal(consultationId, openConsultationItemBtn)
       return
     }
 
-    const addProductBtn = target.closest('[data-add-product-cart]')
-    if (addProductBtn) {
-      const productId = addProductBtn.getAttribute('data-add-product-cart')
-      if (productId) addProduct(productId)
+    const addConsultationModalBtn = target.closest('[data-add-consultation-cart]')
+    if (addConsultationModalBtn) {
+      const consultationId = addConsultationModalBtn.getAttribute('data-add-consultation-cart')
+      if (consultationId) addConsultationToCart(consultationId)
       return
     }
 
-    const quickProductAdd = target.closest('[data-quick-add-product]')
-    if (quickProductAdd) {
-      const productId = quickProductAdd.getAttribute('data-quick-add-product')
-      if (productId) addProduct(productId)
+    const addConsultationBtn = target.closest('[data-add-consultation]')
+    if (addConsultationBtn) {
+      const consultationId = addConsultationBtn.getAttribute('data-add-consultation')
+      if (consultationId) addConsultationToCart(consultationId)
       return
     }
 
@@ -773,11 +685,5 @@ export function mountSupplementsApp(root, content) {
   })
 
   renderCart()
-  renderProducts()
+  updateCartCount()
 }
-
-// Initialize the app
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.getElementById('app')
-  mountSupplementsApp(root, SITE_CONTENT)
-})

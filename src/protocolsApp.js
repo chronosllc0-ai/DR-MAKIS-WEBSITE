@@ -14,39 +14,35 @@ import { icon } from './components/icons.js'
 import { escapeHtml, focusTrap, scrollLock } from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
 
-function supplementCardTemplate(supplement) {
-  const stockBadgeClass = supplement.inStock ? 'easy' : 'advanced'
-  const stockText = supplement.inStock ? 'In Stock' : 'Out of Stock'
-
+function protocolCardTemplate(protocol) {
+  // Determine difficulty badge class
+  const difficultyClass = protocol.difficulty.toLowerCase()
+  
   return `
-    <article class="protocol-card supplement-card">
+    <article class="protocol-card">
       <div class="protocol-header">
-        <h3>${escapeHtml(supplement.name)}</h3>
-        <p class="protocol-subtitle">${escapeHtml(supplement.subtitle || 'Premium Supplement')}</p>
+        <h3>${escapeHtml(protocol.title)}</h3>
+        <p class="protocol-subtitle">${escapeHtml(protocol.subtitle)}</p>
       </div>
       <div class="protocol-body">
-        <div class="supplement-image-placeholder">
-          <img src="${escapeHtml(supplement.image)}" alt="${escapeHtml(supplement.name)} placeholder" class="supplement-placeholder-visual" />
-          <span class="supplement-image-label">Image Placeholder</span>
-        </div>
-        <p class="protocol-description">${escapeHtml(supplement.shortDescription)}</p>
+        <p class="protocol-description">${escapeHtml(protocol.excerpt)}</p>
         <div class="protocol-details">
           <div class="detail-item duration-row">
             ${icon('clock')}
-            <span class="duration-text">${escapeHtml(supplement.duration || '30 Days')}</span>
+            <span class="duration-text">${escapeHtml(protocol.duration)}</span>
           </div>
           <div class="detail-item">
-            <span class="difficulty-badge ${stockBadgeClass}">${stockText}</span>
+            <span class="difficulty-badge ${difficultyClass}">${escapeHtml(protocol.difficulty)}</span>
           </div>
           <div class="detail-item price-row">
-            <span class="protocol-price">${formatMoney(supplement.price)}</span>
+            <span class="protocol-price">${formatMoney(protocol.price)}</span>
           </div>
         </div>
         <div class="protocol-actions">
-          <button class="btn btn-secondary" data-open-product="${escapeHtml(supplement.id)}" aria-label="View ${escapeHtml(supplement.name)} details">
+          <button class="btn btn-secondary" data-open-protocol="${escapeHtml(protocol.id)}" aria-label="View ${escapeHtml(protocol.title)} details">
             ${icon('info')} Details
           </button>
-          <button class="btn btn-primary" data-quick-add-product="${escapeHtml(supplement.id)}" aria-label="Add ${escapeHtml(supplement.name)} to cart">
+          <button class="btn btn-primary" data-add-protocol="${escapeHtml(protocol.id)}" aria-label="Add ${escapeHtml(protocol.title)} to cart">
             ${icon('cart')} Add
           </button>
         </div>
@@ -54,6 +50,17 @@ function supplementCardTemplate(supplement) {
     </article>
   `
 }
+
+function filtersTemplate(filters) {
+  return `
+    <div class="filter-bar">
+      ${filters.map(filter => `
+        <button class="filter-button ${filter === 'All Protocols' ? 'is-active' : ''}" data-filter="${escapeHtml(filter)}">${escapeHtml(filter)}</button>
+      `).join('')}
+    </div>
+  `
+}
+
 function paginationTemplate(currentPage, totalPages) {
   return `
     <div class="pagination">
@@ -66,10 +73,10 @@ function paginationTemplate(currentPage, totalPages) {
   `
 }
 
-function renderSupplementsLayout(content) {
-  const { brand, contact, supplementsPage, supplements } = content
-  const productsPerPage = 12
-  const totalPages = Math.ceil(supplements.length / productsPerPage)
+function renderProtocolsLayout(content) {
+  const { brand, contact, protocolsPage, protocols } = content
+  const protocolsPerPage = 6
+  const totalPages = Math.ceil(protocols.length / protocolsPerPage)
 
   return `
     <div class="site-wrap">
@@ -116,29 +123,30 @@ function renderSupplementsLayout(content) {
       </header>
 
       <main id="top">
-        <section class="hero-section section-panel content-shell" id="supplements-hero">
+        <section class="hero-section section-panel content-shell" id="protocols-hero">
           <div class="hero-content">
-            <h1>${escapeHtml(supplementsPage.hero.title)}</h1>
-            <p>${escapeHtml(supplementsPage.hero.subtitle)}</p>
+            <h1>${escapeHtml(protocolsPage.hero.title)}</h1>
+            <p>${escapeHtml(protocolsPage.hero.subtitle)}</p>
           </div>
         </section>
 
-        <section class="section-panel content-shell" id="products">
+         <section class="section-panel content-shell" id="protocols">
           <div class="section-header">
             <div class="search-bar">
-              <input type="text" id="searchInput" class="search-input" placeholder="Search supplements..." aria-label="Search supplements">
-              <select id="stockFilter" class="difficulty-filter">
-                <option value="All">All Stock</option>
-                <option value="In Stock">In Stock</option>
-                <option value="Out of Stock">Out of Stock</option>
+              <input type="text" id="searchInput" class="search-input" placeholder="Search protocols..." aria-label="Search protocols">
+              <select id="difficultyFilter" class="difficulty-filter">
+                <option value="All Difficulties">All Difficulties</option>
+                <option value="Easy">Easy</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Advanced">Advanced</option>
               </select>
               <button class="btn btn-primary apply-filters" data-apply-filters>Apply Filters</button>
               <button class="btn btn-secondary reset-filters" data-reset-filters>Reset</button>
             </div>
           </div>
 
-          <div class="supplements-grid">
-            ${supplements.slice(0, productsPerPage).map(supplementCardTemplate).join('')}
+          <div class="protocols-grid">
+            ${protocols.slice(0, protocolsPerPage).map(protocolCardTemplate).join('')}
           </div>
 
           ${paginationTemplate(1, totalPages)}
@@ -307,32 +315,41 @@ function renderSupplementsLayout(content) {
   `
 }
 
-function productModalTemplate(product) {
+function protocolModalTemplate(protocol) {
   return `
     <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
-    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="modal-hero" />
+    <img src="${escapeHtml(protocol.image)}" alt="${escapeHtml(protocol.title)}" class="modal-hero" />
     <div class="modal-body">
-      <h2>${escapeHtml(product.name)}</h2>
-      <p class="modal-price">${formatMoney(product.price)}</p>
-      <p>${escapeHtml(product.description)}</p>
+      <h2>${escapeHtml(protocol.title)}</h2>
+      <p class="modal-subtitle">${escapeHtml(protocol.subtitle)}</p>
+      <p class="modal-price">${formatMoney(protocol.price)}</p>
+      <p>${escapeHtml(protocol.about)}</p>
 
-      <div class="trust-row">
-        <span>${icon('box')}Quality Tested</span>
-        <span>${icon('shield')}Safe & Secure</span>
-        <span>${icon('truck')}Fast Shipping</span>
+      <h3>Treatments Included</h3>
+      <ul class="treatment-list">
+        ${protocol.treatments.map(treatment => `<li>${escapeHtml(treatment)}</li>`).join('')}
+      </ul>
+
+      <div class="protocol-stats">
+        ${protocol.stats.map(stat => `
+          <div class="stat-item">
+            <strong>${escapeHtml(stat.value)}</strong>
+            <span>${escapeHtml(stat.label)}</span>
+          </div>
+        `).join('')}
       </div>
 
-      <button class="btn btn-cart block" type="button" data-add-product-cart="${escapeHtml(product.id)}">${icon('cart')}Add to Cart - ${formatMoney(product.price)}</button>
+      <button class="btn btn-cart block" type="button" data-add-protocol-cart="${escapeHtml(protocol.id)}">${icon('cart')}Add to Cart - ${formatMoney(protocol.price)}</button>
     </div>
   `
 }
 
-export function mountSupplementsApp(root, content) {
-  root.innerHTML = renderSupplementsLayout(content)
+export function mountProtocolsApp(root, content) {
+  root.innerHTML = renderProtocolsLayout(content)
 
-  const products = new Map(content.supplements.map((item) => [item.id, item]))
-  const productsPerPage = 12
-  const totalPages = Math.ceil(content.supplements.length / productsPerPage)
+  const protocols = new Map(content.protocols.map((item) => [item.id, item]))
+  const protocolsPerPage = 6
+  const totalPages = Math.ceil(content.protocols.length / protocolsPerPage)
 
   const overlays = {
     nav: root.querySelector('[data-overlay="nav"]'),
@@ -356,61 +373,67 @@ export function mountSupplementsApp(root, content) {
     previousFocus: null,
     currentPage: 1,
     totalPages: totalPages,
-    currentFilter: 'All',
+    currentFilter: 'All Difficulties',
     searchTerm: '',
   }
 
-  function renderProducts() {
-    let filteredSupplements = content.supplements
-
+  function renderProtocols() {
+    // Apply filters
+    let filteredProtocols = content.protocols
+    
+    // Apply search filter
     if (state.searchTerm) {
       const searchLower = state.searchTerm.toLowerCase()
-      filteredSupplements = filteredSupplements.filter((supplement) =>
-        supplement.name.toLowerCase().includes(searchLower) ||
-        supplement.subtitle.toLowerCase().includes(searchLower) ||
-        supplement.shortDescription.toLowerCase().includes(searchLower)
+      filteredProtocols = filteredProtocols.filter(protocol => 
+        protocol.title.toLowerCase().includes(searchLower) ||
+        protocol.subtitle.toLowerCase().includes(searchLower) ||
+        protocol.excerpt.toLowerCase().includes(searchLower)
       )
     }
-
-    if (state.currentFilter === 'In Stock') {
-      filteredSupplements = filteredSupplements.filter((supplement) => supplement.inStock)
-    } else if (state.currentFilter === 'Out of Stock') {
-      filteredSupplements = filteredSupplements.filter((supplement) => !supplement.inStock)
+    
+    // Apply difficulty filter
+    if (state.currentFilter !== 'All Difficulties') {
+      filteredProtocols = filteredProtocols.filter(protocol => protocol.difficulty === state.currentFilter)
     }
-
-    state.totalPages = Math.ceil(filteredSupplements.length / productsPerPage)
+    
+    // Calculate pagination based on filtered results
+    state.totalPages = Math.ceil(filteredProtocols.length / protocolsPerPage)
     if (state.currentPage > state.totalPages) {
       state.currentPage = Math.max(1, state.totalPages)
     }
-
-    const start = (state.currentPage - 1) * productsPerPage
-    const end = start + productsPerPage
-    const pageSupplements = filteredSupplements.slice(start, end)
-
-    const supplementsGrid = root.querySelector('.supplements-grid')
-    if (supplementsGrid) {
-      supplementsGrid.innerHTML = pageSupplements.map(supplementCardTemplate).join('')
+    
+    const start = (state.currentPage - 1) * protocolsPerPage
+    const end = start + protocolsPerPage
+    const pageProtocols = filteredProtocols.slice(start, end)
+    
+    // Update protocols grid
+    const protocolsGrid = root.querySelector('.protocols-grid')
+    if (protocolsGrid) {
+      protocolsGrid.innerHTML = pageProtocols.map(protocolCardTemplate).join('')
     }
-
+    
+    // Update pagination
     const paginationContainer = root.querySelector('.pagination')
     if (paginationContainer) {
       paginationContainer.innerHTML = paginationTemplate(state.currentPage, state.totalPages)
     }
-
-    const stockFilter = root.querySelector('#stockFilter')
-    if (stockFilter) {
-      stockFilter.value = state.currentFilter
+    
+    // Update filter UI
+    const difficultyFilter = root.querySelector('#difficultyFilter')
+    if (difficultyFilter) {
+      difficultyFilter.value = state.currentFilter
     }
-
+    
     const searchInput = root.querySelector('#searchInput')
     if (searchInput) {
       searchInput.value = state.searchTerm
     }
   }
+
   function updatePagination(page) {
     if (page < 1 || page > state.totalPages) return
     state.currentPage = page
-    renderProducts()
+    renderProtocols()
   }
 
   function updateCartCount() {
@@ -556,18 +579,25 @@ export function mountSupplementsApp(root, content) {
     }
   }
 
-  function openProductModal(productId, trigger) {
-    const product = products.get(productId)
-    if (!product) return
+  function openProtocolModal(protocolId, trigger) {
+    const protocol = protocols.get(protocolId)
+    if (!protocol) return
 
-    modalContent.innerHTML = productModalTemplate(product)
+    modalContent.innerHTML = protocolModalTemplate(protocol)
     openSurface('modal', trigger)
   }
 
-  function addProduct(productId) {
-    const product = products.get(productId)
-    if (!product) return
-    addToCart(createProductCartItem(product))
+  function addProtocol(protocolId) {
+    const protocol = protocols.get(protocolId)
+    if (!protocol) return
+    addToCart({
+      id: protocol.id,
+      type: 'protocol',
+      title: protocol.title,
+      price: protocol.price,
+      image: protocol.image,
+      quantity: 1
+    })
     renderCart()
   }
 
@@ -596,35 +626,32 @@ export function mountSupplementsApp(root, content) {
   root.addEventListener('click', (event) => {
     const target = event.target instanceof HTMLElement ? event.target : null
     if (!target) return
+    
+    // Apply filters button
     const applyFiltersBtn = target.closest('[data-apply-filters]')
     if (applyFiltersBtn) {
       const searchInput = root.querySelector('#searchInput')
-      const stockFilter = root.querySelector('#stockFilter')
-
-      state.searchTerm = searchInput ? searchInput.value.trim() : ''
-      state.currentFilter = stockFilter ? stockFilter.value : 'All'
-      state.currentPage = 1
-      renderProducts()
+      const difficultyFilter = root.querySelector('#difficultyFilter')
+      
+      state.searchTerm = searchInput.value.trim()
+      state.currentFilter = difficultyFilter.value
+      state.currentPage = 1 // Reset to first page when filters change
+      renderProtocols()
       return
     }
-
+    
+    // Reset filters button
     const resetFiltersBtn = target.closest('[data-reset-filters]')
     if (resetFiltersBtn) {
       const searchInput = root.querySelector('#searchInput')
-      const stockFilter = root.querySelector('#stockFilter')
-
-      if (searchInput) {
-        searchInput.value = ''
-      }
-
-      if (stockFilter) {
-        stockFilter.value = 'All'
-      }
-
+      const difficultyFilter = root.querySelector('#difficultyFilter')
+      
+      searchInput.value = ''
+      difficultyFilter.value = 'All Difficulties'
       state.searchTerm = ''
-      state.currentFilter = 'All'
-      state.currentPage = 1
-      renderProducts()
+      state.currentFilter = 'All Difficulties'
+      state.currentPage = 1 // Reset to first page when filters are reset
+      renderProtocols()
       return
     }
 
@@ -688,24 +715,24 @@ export function mountSupplementsApp(root, content) {
       return
     }
 
-    const openProductBtn = target.closest('[data-open-product]')
-    if (openProductBtn) {
-      const productId = openProductBtn.getAttribute('data-open-product')
-      if (productId) openProductModal(productId, openProductBtn)
+    const openProtocolBtn = target.closest('[data-open-protocol]')
+    if (openProtocolBtn) {
+      const protocolId = openProtocolBtn.getAttribute('data-open-protocol')
+      if (protocolId) openProtocolModal(protocolId, openProtocolBtn)
       return
     }
 
-    const addProductBtn = target.closest('[data-add-product-cart]')
-    if (addProductBtn) {
-      const productId = addProductBtn.getAttribute('data-add-product-cart')
-      if (productId) addProduct(productId)
+    const addProtocolBtn = target.closest('[data-add-protocol-cart]')
+    if (addProtocolBtn) {
+      const protocolId = addProtocolBtn.getAttribute('data-add-protocol-cart')
+      if (protocolId) addProtocol(protocolId)
       return
     }
 
-    const quickProductAdd = target.closest('[data-quick-add-product]')
-    if (quickProductAdd) {
-      const productId = quickProductAdd.getAttribute('data-quick-add-product')
-      if (productId) addProduct(productId)
+    const quickProtocolAdd = target.closest('[data-add-protocol]')
+    if (quickProtocolAdd) {
+      const protocolId = quickProtocolAdd.getAttribute('data-add-protocol')
+      if (protocolId) addProtocol(protocolId)
       return
     }
 
@@ -773,11 +800,11 @@ export function mountSupplementsApp(root, content) {
   })
 
   renderCart()
-  renderProducts()
+  renderProtocols()
 }
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('app')
-  mountSupplementsApp(root, SITE_CONTENT)
+  mountProtocolsApp(root, SITE_CONTENT)
 })

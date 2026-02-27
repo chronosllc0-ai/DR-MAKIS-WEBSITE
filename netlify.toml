@@ -9,6 +9,11 @@
   status = 301
 
 [[redirects]]
+  from = "/consultations"
+  to = "/consultations/"
+  status = 301
+
+[[redirects]]
   from = "/api/checkout"
   to = "/.netlify/functions/checkout"
   status = 200

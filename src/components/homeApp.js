@@ -126,7 +126,7 @@ function productSlidesTemplate(products) {
     .join('')
 }
 
-  function categoryCardsTemplate(cards) {
+function categoryCardsTemplate(cards) {
   return cards
     .map(
       (card) => `
@@ -139,6 +139,10 @@ function productSlidesTemplate(products) {
           <p>${escapeHtml(card.description)}</p>
           ${card.id === 'supplements' ? 
             `<a class="text-link" href="/supplements.html">${escapeHtml(card.cta)} ${icon('arrowRight')}</a>` : 
+            card.id === 'protocols' ?
+            `<a class="text-link" href="/protocols.html">${escapeHtml(card.cta)} ${icon('arrowRight')}</a>` :
+            card.id === 'consultations' ?
+            `<a class="text-link" href="/consultations/">${escapeHtml(card.cta)} ${icon('arrowRight')}</a>` :
             `<button class="text-link" data-scroll-target="${escapeHtml(card.id)}">${escapeHtml(card.cta)} ${icon('arrowRight')}</button>`
           }
         </div>
@@ -511,6 +515,8 @@ function renderMainLayout(content) {
       <nav>
         <a href="#home" data-nav-link>Home</a>
         <a href="/supplements.html" data-nav-link>Supplements</a>
+        <a href="/protocols.html" data-nav-link>Protocols</a>
+        <a href="/consultations/" data-nav-link>Consultations</a>
         <a href="#shop" data-nav-link>Shop by Category</a>
         <a href="#expertise" data-nav-link>Our Expertise</a>
         <a href="#protocols" data-nav-link>Treatment Protocols</a>
@@ -1147,9 +1153,6 @@ export function mountHomeApp(root, content) {
       }
       if (targetSection === 'protocols') {
         document.querySelector('#protocols')?.scrollIntoView({ behavior: 'smooth' })
-      }
-      if (targetSection === 'consultations') {
-        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
       }
       return
     }

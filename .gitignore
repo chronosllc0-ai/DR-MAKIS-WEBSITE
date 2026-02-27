@@ -26,3 +26,7 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Local recovery/quarantine artifacts
+.quarantine/
+src/.kilo-format-temp-*.js

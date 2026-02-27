@@ -56,7 +56,7 @@
         icon: 'document',
         title: 'Protocols',
         description: 'Comprehensive wellness programs',
-        cta: 'View Protocols',
+        cta: 'Explore Protocols',
         image: '/placeholders/card-placeholder.svg',
       },
       {
@@ -625,8 +625,10 @@
     {
       id: 'fenbendazole',
       name: 'Fenbendazole',
-      shortDescription: 'Complementary support being researched worldwide...',
+      subtitle: '222mg Antiparasitic Support',
+      shortDescription: 'Complementary support being researched worldwide for its potential cellular health benefits.',
       description: 'Pharmaceutical-grade fenbendazole capsules. This compound has gained attention in integrative health circles and is currently being researched worldwide for its potential cellular health benefits.',
+      duration: '30 Days',
       reviews: 127,
       rating: 4.5,
       price: 250,
@@ -636,8 +638,10 @@
     {
       id: 'artemisinin',
       name: 'Artemisinin Extract',
-      shortDescription: 'Sweet wormwood extract with active research compounds...',
+      subtitle: 'Sweet Wormwood Compound',
+      shortDescription: 'Sweet wormwood extract with active research compounds recognized with Nobel Prize.',
       description: 'Pure artemisinin extracted from Artemisia annua (sweet wormwood). This compound has been recognized with the Nobel Prize for its medicinal applications and continues to be actively researched for cellular health benefits.',
+      duration: '60 Days',
       reviews: 156,
       rating: 4.5,
       price: 260,
@@ -647,8 +651,10 @@
     {
       id: 'zeolite',
       name: 'Zeolite Binder',
-      shortDescription: 'Natural mineral supplement for detoxification support...',
+      subtitle: 'Natural Mineral Detox',
+      shortDescription: 'Natural mineral supplement for detoxification support and toxin elimination.',
       description: 'Premium zeolite supplement designed to support natural detoxification processes. Zeolite is a naturally occurring mineral with unique properties that may help support overall wellness.',
+      duration: '45 Days',
       reviews: 98,
       rating: 4.5,
       price: 180,
@@ -658,8 +664,10 @@
     {
       id: 'ivermectin-3mg',
       name: 'Ivermectin 3mg',
-      shortDescription: 'Pharmaceutical grade tablets for supportive care...',
+      subtitle: 'Pharmaceutical Grade Tablets',
+      shortDescription: 'Pharmaceutical grade tablets for supportive care and immune modulation.',
       description: 'Pharmaceutical-grade ivermectin tablets in 3mg strength. This Nobel Prize-winning compound is being investigated in various research studies for potential supportive health applications.',
+      duration: '10 Days',
       reviews: 89,
       rating: 4.5,
       price: 250,
@@ -669,8 +677,10 @@
     {
       id: 'ivermectin-6mg',
       name: 'Ivermectin 6mg',
-      shortDescription: 'Higher strength pharmaceutical grade tablets...',
+      subtitle: 'Higher Strength Formula',
+      shortDescription: 'Higher strength pharmaceutical grade tablets for enhanced support.',
       description: 'Pharmaceutical-grade ivermectin tablets in 6mg strength. This Nobel Prize-winning compound is being investigated in various research studies for potential supportive health applications.',
+      duration: '10 Days',
       reviews: 76,
       rating: 4.5,
       price: 270,
@@ -680,8 +690,10 @@
     {
       id: 'vitamin-e',
       name: 'Vitamin E 600-800mg',
-      shortDescription: 'High potency vitamin E supplement...',
+      subtitle: 'High Potency Antioxidant',
+      shortDescription: 'High potency vitamin E supplement for cellular protection and wellness.',
       description: 'High-potency vitamin E supplement providing 600-800mg per serving. Vitamin E is a powerful antioxidant that supports overall wellness and cellular health.',
+      duration: '90 Days',
       reviews: 201,
       rating: 4.5,
       price: 120,
@@ -691,8 +703,10 @@
     {
       id: 'methylene-blue',
       name: 'Methylene Blue',
-      shortDescription: 'Investigated for cellular and mitochondrial function support...',
+      subtitle: 'Mitochondrial Support',
+      shortDescription: 'Investigated for cellular and mitochondrial function support and energy.',
       description: 'USP-grade methylene blue solution for precise dosing. This compound has a long history in medicine and is currently being researched for its potential benefits in supporting mitochondrial function and cellular energy production.',
+      duration: '60 Days',
       reviews: 73,
       rating: 4.5,
       price: 250,
@@ -702,13 +716,306 @@
     {
       id: 'hydroxychloroquine',
       name: 'Hydroxychloroquine 400mg',
-      shortDescription: 'Pharmaceutical grade tablets for research purposes...',
+      subtitle: 'Immune Modulation Support',
+      shortDescription: 'Pharmaceutical grade tablets for immune-related research purposes.',
       description: 'Pharmaceutical-grade hydroxychloroquine tablets in 400mg strength. This compound has been used for various medical applications and continues to be the subject of ongoing research.',
+      duration: '30 Days',
       reviews: 54,
       rating: 4.5,
       price: 280,
       inStock: true,
       image: '/placeholders/card-placeholder.svg'
+    }
+  ],
+  consultationsPage: {
+    hero: {
+      title: 'Consultations',
+      subtitle: 'Book a personalized consultation with Dr. William Makis for expert guidance on your health journey.',
+    },
+  },
+  consultations: [
+    {
+      id: 'initial-consultation',
+      icon: 'clipboard',
+      title: 'Initial Consultation',
+      subtitle: 'Comprehensive health assessment',
+      excerpt:
+        'One-on-one consultation to review your health history, current concerns, and develop a personalized wellness plan.',
+      description:
+        'A foundational consultation covering your current health status, background, goals, and immediate next steps for a personalized plan.',
+      duration: '60 minutes',
+      delivery: 'Video Call',
+      price: 650,
+      popular: true,
+      image: '/placeholders/card-placeholder.svg',
+    },
+    {
+      id: 'follow-up-consultation',
+      icon: 'refresh',
+      title: 'Follow-Up Consultation',
+      subtitle: 'Progress review and plan adjustment',
+      excerpt: 'Review your progress, adjust your protocol, and address any questions or concerns.',
+      description:
+        'A focused follow-up session to evaluate outcomes, update your protocol when needed, and keep implementation on track.',
+      duration: '30 minutes',
+      delivery: 'Video Call',
+      price: 460,
+      popular: false,
+      image: '/placeholders/card-placeholder.svg',
+    },
+    {
+      id: 'protocol-review',
+      icon: 'search',
+      title: 'Protocol Review',
+      subtitle: 'Expert review of your current protocol',
+      excerpt:
+        'Have an expert review your existing wellness protocol and provide recommendations for optimization.',
+      description:
+        'Detailed protocol audit with recommendations to improve sequencing, dosing cadence, and supporting steps.',
+      duration: '45 minutes',
+      delivery: 'Video Call + Written Report',
+      price: 500,
+      popular: true,
+      image: '/placeholders/card-placeholder.svg',
+    },
+    {
+      id: 'supplement-selection-consultation',
+      icon: 'link',
+      title: 'Supplement Selection Consultation',
+      subtitle: 'Personalized supplement recommendations',
+      excerpt: 'Get expert guidance on choosing the right supplements for your specific health goals.',
+      description:
+        'Consultation dedicated to supplement strategy, prioritization, and practical implementation based on your goals.',
+      duration: '45 minutes',
+      delivery: 'Video Call',
+      price: 590,
+      popular: false,
+      image: '/placeholders/card-placeholder.svg',
+    },
+    {
+      id: 'extended-consultation-package',
+      icon: 'calendar',
+      title: 'Extended Consultation Package',
+      subtitle: 'Comprehensive 3-month support',
+      excerpt:
+        'Three months of ongoing consultation support with regular check-ins and unlimited email support.',
+      description:
+        'A structured 3-month guidance package with scheduled video consultations, iterative plan updates, and ongoing async support.',
+      duration: '3 months',
+      delivery: 'Video Calls + Email Support',
+      price: 4500,
+      originalPrice: 8400,
+      saveNote: 'Save $3,900.00',
+      popular: true,
+      image: '/placeholders/card-placeholder.svg',
+    },
+  ],
+  protocolsPage: {
+    hero: {
+      title: "Protocols",
+      subtitle: "Evidence-based wellness protocols designed by Dr. William Makis for comprehensive health support."
+    },
+    filters: ["All Difficulties", "Easy", "Moderate", "Advanced"],
+    protocolCount: "8 Protocols"
+  },
+  protocols: [
+    {
+      id: 'ivermectin-protocol',
+      title: 'Ivermectin Protocol',
+      subtitle: 'Individual Ivermectin Program',
+      excerpt: 'A protocol based on daily or alternate-day use of ivermectin tablets (3mg or 12mg) under medical supervision.',
+      description: 'This protocol involves the use of ivermectin, a well-known antiparasitic medication, for health support.',
+      duration: '3 Months',
+      difficulty: 'Easy',
+      price: 2600,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Ivermectin Protocol is designed for individuals seeking a simple, evidence-based approach to health support. This program involves daily or alternate-day use of ivermectin tablets under medical supervision.',
+      treatments: [
+        'Ivermectin 3mg or 12mg tablets',
+        'Daily or alternate-day dosing',
+        'Medical supervision',
+        'Regular monitoring',
+        'Supportive guidance'
+      ],
+      stats: [
+        { value: '90%', label: 'Success Rate' },
+        { value: 'Simple', label: 'Administration' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'fenbendazole-protocol',
+      title: 'Fenbendazole Protocol',
+      subtitle: 'Individual Fenbendazole Program',
+      excerpt: 'Involves use of Fenbendazole (commonly 222mg daily, sometimes titrated higher) with food containing fat.',
+      description: 'This protocol focuses on the use of fenbendazole, a broad-spectrum antiparasitic agent, for health support.',
+      duration: '3 Months',
+      difficulty: 'Easy',
+      price: 2800,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Fenbendazole Protocol is designed for individuals seeking a straightforward approach to health support. This program involves daily use of fenbendazole, often with fat-containing food to enhance absorption.',
+      treatments: [
+        'Fenbendazole 222mg daily',
+        'Fat-containing meals',
+        'Optional titration',
+        'Medical supervision',
+        'Progress tracking'
+      ],
+      stats: [
+        { value: '88%', label: 'Success Rate' },
+        { value: 'Once daily', label: 'Dosing' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'mebendazole-protocol',
+      title: 'Mebendazole Protocol',
+      subtitle: 'Individual Mebendazole Program',
+      excerpt: 'Involves using Mebendazole (100mg tablets) as part of a cancer support regimen. Often paired with other supplements.',
+      description: 'This protocol uses mebendazole, an anthelmintic medication, as part of a comprehensive health support regimen.',
+      duration: '3 Months',
+      difficulty: 'Moderate',
+      price: 2500,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Mebendazole Protocol is designed for individuals seeking a targeted approach to health support. This program involves the use of mebendazole tablets, often in combination with other supportive supplements.',
+      treatments: [
+        'Mebendazole 100mg tablets',
+        'Combination therapy',
+        'Supplementary support',
+        'Medical supervision',
+        'Regular follow-up'
+      ],
+      stats: [
+        { value: '85%', label: 'Success Rate' },
+        { value: 'Combination', label: 'Therapy' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'hydroxychloroquine-protocol',
+      title: 'Hydroxychloroquine Protocol',
+      subtitle: 'Immune Modulation & Anti-Inflammatory Program',
+      excerpt: 'Hydroxychloroquine (200mg-400mg daily) has been studied for immune modulation and anti-inflammatory effects.',
+      description: 'This protocol focuses on the use of hydroxychloroquine for immune modulation and anti-inflammatory support.',
+      duration: '3 Months',
+      difficulty: 'Advanced',
+      price: 2900,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Hydroxychloroquine Protocol is designed for individuals seeking immune modulation and anti-inflammatory support. This program involves daily use of hydroxychloroquine under close medical supervision.',
+      treatments: [
+        'Hydroxychloroquine 200mg-400mg daily',
+        'Immune modulation',
+        'Anti-inflammatory support',
+        'Close medical supervision',
+        'Regular monitoring'
+      ],
+      stats: [
+        { value: '82%', label: 'Success Rate' },
+        { value: 'Advanced', label: 'Monitoring' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'jo-tippens-protocol',
+      title: 'Jo Tippens Cancer Protocol',
+      subtitle: 'Detailed Multi-Agent Cancer Protocol',
+      excerpt: 'A well-known regimen combining Fenbendazole, Ivermectin, Albendazole, Serrapeptase, TUDCA, Curcumin, and more.',
+      description: 'This comprehensive protocol combines multiple agents for synergistic health support.',
+      duration: '3 Months',
+      difficulty: 'Advanced',
+      price: 2700,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Jo Tippens Cancer Protocol is a comprehensive multi-agent regimen designed for individuals seeking advanced health support. This protocol combines fenbendazole, ivermectin, albendazole, serrapeptase, TUDCA, curcumin, and other supportive agents.',
+      treatments: [
+        'Fenbendazole',
+        'Ivermectin',
+        'Albendazole',
+        'Serrapeptase',
+        'TUDCA',
+        'Curcumin',
+        'Additional supplements'
+      ],
+      stats: [
+        { value: '87%', label: 'Success Rate' },
+        { value: 'Multi-agent', label: 'Regimen' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'vaccine-detox-protocol',
+      title: 'Vaccine Detoxification Protocol',
+      subtitle: 'Complete Vaccine Detoxification Program',
+      excerpt: 'A comprehensive detox program designed to support elimination of vaccine-related toxins. Includes supplements and lifestyle modifications.',
+      description: 'This protocol focuses on supporting the body\'s natural detoxification processes after vaccination.',
+      duration: '3 Months',
+      difficulty: 'Moderate',
+      price: 2500,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Vaccine Detoxification Protocol is designed to support the body\'s natural detoxification processes after vaccination. This program includes targeted supplements and lifestyle modifications to aid in toxin elimination.',
+      treatments: [
+        'Detoxification supplements',
+        'Liver support',
+        'Kidney support',
+        'Lifestyle modifications',
+        'Nutritional guidance',
+        'Regular monitoring'
+      ],
+      stats: [
+        { value: '84%', label: 'Success Rate' },
+        { value: 'Comprehensive', label: 'Detox' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'parasite-detox-protocol',
+      title: 'Parasite Detoxification Protocol',
+      subtitle: 'Complete Parasite Elimination Program',
+      excerpt: 'Uses antiparasitic compounds such as ivermectin, mebendazole, and natural herbs to help clear parasitic infections.',
+      description: 'This protocol focuses on eliminating parasitic infections using a combination of pharmaceutical and natural agents.',
+      duration: '3 Months',
+      difficulty: 'Easy',
+      price: 3500,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Parasite Detoxification Protocol is designed to help individuals clear parasitic infections using a comprehensive approach. This program combines pharmaceutical antiparasitic agents with natural herbs and supportive supplements.',
+      treatments: [
+        'Ivermectin',
+        'Mebendazole',
+        'Natural herbal supplements',
+        'Digestive support',
+        'Nutritional guidance',
+        'Follow-up testing'
+      ],
+      stats: [
+        { value: '92%', label: 'Success Rate' },
+        { value: 'Comprehensive', label: 'Elimination' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
+    },
+    {
+      id: 'complete-cancer-protocol',
+      title: 'Complete Cancer Protocol',
+      subtitle: 'Advanced Comprehensive Cancer Support Plan',
+      excerpt: 'A high-intensity multi-agent protocol combining antiparasitics (Fenbendazole, Mebendazole, Ivermectin) with supportive supplements.',
+      description: 'This advanced protocol combines multiple antiparasitic agents with comprehensive supportive care.',
+      duration: '3 Months',
+      difficulty: 'Advanced',
+      price: 5000,
+      image: '/placeholders/card-placeholder.svg',
+      about: 'The Complete Cancer Protocol is an advanced, high-intensity program designed for individuals seeking comprehensive cancer support. This protocol combines multiple antiparasitic agents with a wide range of supportive supplements and therapies.',
+      treatments: [
+        'Fenbendazole',
+        'Mebendazole',
+        'Ivermectin',
+        'Comprehensive supplement regimen',
+        'Immune support',
+        'Nutritional therapy',
+        'Lifestyle modifications'
+      ],
+      stats: [
+        { value: '89%', label: 'Success Rate' },
+        { value: 'High-intensity', label: 'Protocol' },
+        { value: '3+ months', label: 'Treatment Duration' }
+      ]
     }
   ],
   misc: {
