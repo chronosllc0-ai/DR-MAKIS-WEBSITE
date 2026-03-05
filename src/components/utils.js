@@ -62,3 +62,40 @@ export function toSlug(value) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
+
+const CONSULTATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/mblvaalz'
+
+export async function submitFormspree(formElement, extraFields = {}) {
+  const formData = new FormData(formElement)
+  Object.entries(extraFields).forEach(([field, value]) => {
+    formData.append(field, String(value))
+  })
+
+  const response = await fetch(CONSULTATION_FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+    },
+    body: formData,
+  })
+
+  if (response.ok) return
+
+  let message = 'Unable to submit your consultation request right now. Please try again.'
+  try {
+    const payload = await response.json()
+    if (Array.isArray(payload?.errors) && payload.errors.length) {
+      message = payload.errors.map((entry) => entry.message).filter(Boolean).join(' ')
+    } else if (payload?.error) {
+      message = payload.error
+    }
+  } catch {
+    // Keep generic message if response payload cannot be parsed.
+  }
+
+  throw new Error(message)
+}
+
+export async function submitConsultationRequest(formElement) {
+  return submitFormspree(formElement)
+}

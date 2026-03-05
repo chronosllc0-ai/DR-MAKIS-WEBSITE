@@ -11,7 +11,53 @@
   updateQuantity,
 } from './cartStore.js'
 import { icon } from './icons.js'
-import { escapeHtml, focusTrap, scrollLock } from './utils.js'
+import { escapeHtml, focusTrap, scrollLock, submitConsultationRequest } from './utils.js'
+
+const FOOTER_SECTION_MAP = {
+  services: {
+    'Cancer Diagnostics': 'expertise',
+    'Treatment Programs': 'protocols',
+    'Clinical Trials': 'research',
+    'Second Opinions': 'contact',
+  },
+  resources: {
+    'Patient Portal': 'contact',
+    'Research Publications': 'research',
+    'Insurance & Billing': 'contact',
+    FAQs: 'contact',
+  },
+  about: {
+    'Our Team': 'expertise',
+    Facilities: 'contact',
+    Careers: 'contact',
+    'Contact Us': 'contact',
+  },
+  legal: {
+    'Privacy Policy': 'footer',
+    'Terms of Service': 'footer',
+    'HIPAA Compliance': 'footer',
+  },
+}
+
+function footerListTemplate(items, group, hrefPrefix = '/') {
+  const sectionMap = FOOTER_SECTION_MAP[group] || {}
+  return items
+    .map((item) => {
+      const section = sectionMap[item] || 'contact'
+      return `<li><a href="${hrefPrefix}#${section}">${escapeHtml(item)}</a></li>`
+    })
+    .join('')
+}
+
+function footerLegalTemplate(items, hrefPrefix = '/') {
+  const sectionMap = FOOTER_SECTION_MAP.legal
+  return items
+    .map((item) => {
+      const section = sectionMap[item] || 'footer'
+      return `<a href="${hrefPrefix}#${section}">${escapeHtml(item)}</a>`
+    })
+    .join('')
+}
 
 function renderStars(rating) {
   return '<span class="stars" aria-label="5 star rating">' + '★'.repeat(rating) + '</span>'
@@ -22,12 +68,26 @@ function metricsTemplate(metrics) {
     .map(
       (metric) => `
       <div class="metric-tile">
+        <span class="metric-icon-chip">${icon(metric.icon || 'badge')}</span>
         <div class="metric-value">${escapeHtml(metric.value)}</div>
         <div class="metric-label">${escapeHtml(metric.label)}</div>
       </div>
     `
     )
     .join('')
+}
+
+function heroProfileTemplate(hero) {
+  return `
+    <article class="hero-profile-card" aria-label="Doctor credentials">
+      <span class="hero-profile-icon">${icon('badge')}</span>
+      <div>
+        <h3>${escapeHtml(hero.profileTitle || 'Dr. William Makis, MD')}</h3>
+        <p class="hero-profile-role">${escapeHtml(hero.profileSubtitle || 'Nuclear Medicine Physician & Oncologist')}</p>
+        <p class="hero-profile-highlight">${escapeHtml(hero.profileHighlight || '500+ Research Publications')}</p>
+      </div>
+    </article>
+  `
 }
 
 function programsCardsTemplate(programs) {
@@ -154,16 +214,20 @@ function categoryCardsTemplate(cards) {
 function testimonialsTemplate(testimonials) {
   return testimonials
     .map(
-      (item, index) => `
-      <article class="testimonial-card ${index === 0 ? 'is-active' : ''}" data-testimonial-slide="${escapeHtml(
-        item.id
-      )}" aria-hidden="${index === 0 ? 'false' : 'true'}">
-        <span class="quote-icon">${icon('quote')}</span>
-        <p class="rating-line">${renderStars(5)}</p>
+      (item) => `
+      <article class="testimonial-card">
+        <span class="testimonial-quote-mark" aria-hidden="true">&#10077;</span>
+        <p class="testimonial-stars" aria-label="5 star rating">
+          <span class="testimonial-star">&#9733;</span>
+          <span class="testimonial-star">&#9733;</span>
+          <span class="testimonial-star">&#9733;</span>
+          <span class="testimonial-star">&#9733;</span>
+          <span class="testimonial-star">&#9733;</span>
+        </p>
         <p class="testimonial-quote">\"${escapeHtml(item.quote)}\"</p>
         <div class="person-row">
           <img src="${escapeHtml(item.avatar)}" alt="${escapeHtml(item.name)}" class="avatar-sm" />
-          <div>
+          <div class="testimonial-person">
             <strong>${escapeHtml(item.name)}</strong>
             <p>${escapeHtml(item.role)}</p>
           </div>
@@ -179,10 +243,14 @@ function videosTemplate(videos) {
     .map(
       (video) => `
       <article class="video-card">
-        <div class="video-frame">
-          <img src="${escapeHtml(video.image)}" alt="${escapeHtml(video.title)}" />
-          <span class="youtube-pill">YouTube</span>
-          <span class="play-badge">${icon('play')}</span>
+        <div class="streamable-embed video-frame" style="padding-bottom:${escapeHtml(video.embedPadding || '56.250%')}">
+          <iframe
+            allow="fullscreen"
+            allowfullscreen
+            loading="lazy"
+            src="${escapeHtml(video.embedUrl || video.url)}"
+            title="${escapeHtml(video.title)}"
+          ></iframe>
         </div>
         <h3>${escapeHtml(video.title)}</h3>
         <p>${escapeHtml(video.description)}</p>
@@ -196,9 +264,11 @@ function publicationsTemplate(items) {
   return items
     .map(
       (item) => `
-      <article class="publication-card">
+      <a class="publication-card" href="${escapeHtml(item.url || '#research')}" target="_blank" rel="noopener noreferrer" aria-label="Open publication: ${escapeHtml(
+        item.title
+      )}">
         <span class="publication-icon">${icon('document')}</span>
-        <div>
+        <div class="publication-content">
           <h3>${escapeHtml(item.title)}</h3>
           <div class="meta-line">
             <span class="meta-tag">${escapeHtml(item.tag)}</span>
@@ -206,7 +276,8 @@ function publicationsTemplate(items) {
           </div>
           <p class="citation">${escapeHtml(item.citations)}</p>
         </div>
-      </article>
+        <span class="publication-link-icon" aria-hidden="true">${icon('externalLink')}</span>
+      </a>
     `
     )
     .join('')
@@ -271,7 +342,8 @@ function renderMainLayout(content) {
               <a class="btn btn-primary" href="/checkout">${icon('calendar')}${escapeHtml(hero.ctaPrimary)}</a>
               <a class="btn btn-secondary" href="#research">${escapeHtml(hero.ctaSecondary)} ${icon('arrowRight')}</a>
             </div>
-            <div class="hero-metrics">${metricsTemplate(hero.stats)}</div>
+            <div class="hero-metrics">${metricsTemplate(hero.stats.slice(0, 3))}</div>
+            ${heroProfileTemplate(hero)}
           </div>
         </section>
 
@@ -339,8 +411,17 @@ function renderMainLayout(content) {
             <p>${escapeHtml(content.educationalSection.description)}</p>
           </header>
           <article class="featured-video-card">
-            <img src="${escapeHtml(content.educationalSection.featuredVideo.image)}" alt="Featured video" />
-            <button class="play-large" aria-label="Play featured video">${icon('play')}</button>
+            <div class="streamable-embed featured-streamable" style="padding-bottom:${escapeHtml(
+              content.educationalSection.featuredVideo.embedPadding || '56.250%'
+            )}">
+              <iframe
+                allow="fullscreen"
+                allowfullscreen
+                loading="lazy"
+                src="${escapeHtml(content.educationalSection.featuredVideo.embedUrl || content.educationalSection.featuredVideo.url)}"
+                title="${escapeHtml(content.educationalSection.featuredVideo.title)}"
+              ></iframe>
+            </div>
             <div class="video-meta-row">
               <span class="pill-tag">${escapeHtml(content.educationalSection.featuredVideo.tag)}</span>
               <span>${escapeHtml(content.educationalSection.featuredVideo.duration)}</span>
@@ -367,12 +448,21 @@ function renderMainLayout(content) {
               .map(
                 (cert) => `
                 <article class="cert-card">
-                  <img src="${escapeHtml(cert.image)}" alt="${escapeHtml(cert.title)} certificate" class="cert-image" />
+                  <a class="cert-media" href="${escapeHtml(cert.image)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeHtml(
+                    cert.title
+                  )} certificate image">
+                    <img src="${escapeHtml(cert.image)}" alt="${escapeHtml(cert.title)} certificate" class="cert-image" />
+                    <span class="cert-enlarge-pill">Click to enlarge</span>
+                  </a>
                   <div class="cert-body">
-                    <h3>${escapeHtml(cert.title)}</h3>
-                    <p class="institution">${escapeHtml(cert.institution)} <span>•</span> ${escapeHtml(cert.year)}</p>
-                    <p class="verified">${icon('badge')} ${escapeHtml(cert.status)}</p>
-                    <p>${escapeHtml(cert.description)}</p>
+                    <div class="cert-body-head">
+                      <div>
+                        <h3>${escapeHtml(cert.title)}</h3>
+                        <p class="institution">${escapeHtml(cert.institution)} <span>•</span> ${escapeHtml(cert.year)}</p>
+                      </div>
+                      <p class="verified">${icon('badge')} ${escapeHtml(cert.status)}</p>
+                    </div>
+                    <p class="cert-description">${escapeHtml(cert.description)}</p>
                   </div>
                 </article>
               `
@@ -389,46 +479,30 @@ function renderMainLayout(content) {
           </header>
 
           <div class="testimonial-slides">${testimonialsTemplate(content.testimonialsSection.testimonials)}</div>
-          <div class="carousel-control-row">
-            <button class="carousel-arrow" data-testimonial-prev aria-label="Previous testimonial">${icon(
-              'arrowLeft'
-            )}</button>
-            <div class="carousel-dots" role="tablist" aria-label="Testimonials">
-              ${content.testimonialsSection.testimonials
-                .map(
-                  (item, index) =>
-                    `<button class="dot ${index === 0 ? 'is-active' : ''}" role="tab" aria-selected="${
-                      index === 0 ? 'true' : 'false'
-                    }" data-testimonial-dot="${index}" aria-label="Show testimonial from ${escapeHtml(
-                      item.name
-                    )}"></button>`
-                )
-                .join('')}
-            </div>
-            <button class="carousel-arrow" data-testimonial-next aria-label="Next testimonial">${icon(
-              'arrowRight'
-            )}</button>
-          </div>
         </section>
         <section class="section-panel content-shell" id="research">
-          <header class="section-header">
-            <p class="section-kicker">${escapeHtml(content.publicationsSection.kicker)}</p>
-            <h2>${escapeHtml(content.publicationsSection.title)}</h2>
-            <p>${escapeHtml(content.publicationsSection.description)}</p>
-          </header>
-          <div class="stats-grid">
-            ${content.publicationsSection.stats
-              .map(
-                (stat) => `
-                <article class="stat-card">
-                  <strong>${escapeHtml(stat.value)}</strong>
-                  <p>${escapeHtml(stat.label)}</p>
-                </article>
-              `
-              )
-              .join('')}
+          <div class="research-layout">
+            <div class="research-copy">
+              <header class="section-header">
+                <p class="section-kicker">${escapeHtml(content.publicationsSection.kicker)}</p>
+                <h2>${escapeHtml(content.publicationsSection.title)}</h2>
+                <p>${escapeHtml(content.publicationsSection.description)}</p>
+              </header>
+              <div class="stats-grid">
+                ${content.publicationsSection.stats
+                  .map(
+                    (stat) => `
+                    <article class="stat-card">
+                      <strong>${escapeHtml(stat.value)}</strong>
+                      <p>${escapeHtml(stat.label)}</p>
+                    </article>
+                  `
+                  )
+                  .join('')}
+              </div>
+            </div>
+            <div class="publication-grid">${publicationsTemplate(content.publicationsSection.items)}</div>
           </div>
-          <div class="publication-grid">${publicationsTemplate(content.publicationsSection.items)}</div>
         </section>
 
         <section class="section-panel cta-panel content-shell" id="contact">
@@ -463,24 +537,24 @@ function renderMainLayout(content) {
           </div>
         </div>
         <div class="social-row">
-          <button class="icon-button ghost" aria-label="Facebook">${icon('facebook')}</button>
-          <button class="icon-button ghost" aria-label="Twitter">${icon('twitter')}</button>
-          <button class="icon-button ghost" aria-label="LinkedIn">${icon('linkedin')}</button>
-          <button class="icon-button ghost" aria-label="Instagram">${icon('instagram')}</button>
+          <a class="icon-button ghost" href="#contact" aria-label="Facebook">${icon('facebook')}</a>
+          <a class="icon-button ghost" href="#contact" aria-label="Twitter">${icon('twitter')}</a>
+          <a class="icon-button ghost" href="#contact" aria-label="LinkedIn">${icon('linkedin')}</a>
+          <a class="icon-button ghost" href="#contact" aria-label="Instagram">${icon('instagram')}</a>
         </div>
 
         <div class="footer-columns">
           <div>
             <h3>Services</h3>
-            <ul>${content.footer.services.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            <ul>${footerListTemplate(content.footer.services, 'services', '')}</ul>
           </div>
           <div>
             <h3>Resources</h3>
-            <ul>${content.footer.resources.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            <ul>${footerListTemplate(content.footer.resources, 'resources', '')}</ul>
           </div>
           <div>
             <h3>About</h3>
-            <ul>${content.footer.about.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            <ul>${footerListTemplate(content.footer.about, 'about', '')}</ul>
           </div>
           <div>
             <h3>Contact</h3>
@@ -489,24 +563,15 @@ function renderMainLayout(content) {
     contact.telegramHandle
   )}</a></li>
               <li>${icon('mail')} <a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a></li>
-              <li>${escapeHtml(content.footer.todo)}</li>
             </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>${escapeHtml(content.footer.copyright)}</p>
-          <div class="legal-links">${content.footer.legal.map((item) => `<a href="#">${escapeHtml(item)}</a>`).join('')}</div>
+          <div class="legal-links">${footerLegalTemplate(content.footer.legal, '')}</div>
         </div>
       </footer>
-
-      <a class="floating-telegram" href="${escapeHtml(contact.telegramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram chat">
-        ${icon('telegram')}
-        <span class="pulse-dot"></span>
-      </a>
-      <button class="floating-chat-placeholder" aria-label="Chat placeholder for Smartsupp" type="button">
-        ${icon('chat')}
-      </button>
     </div>
 
     <div class="overlay" data-overlay="nav" hidden></div>
@@ -522,7 +587,7 @@ function renderMainLayout(content) {
         <a href="#protocols" data-nav-link>Treatment Protocols</a>
         <a href="#process" data-nav-link>Our Process</a>
         <a href="#products" data-nav-link>Cancer Support Products</a>
-        <a href="#videos" data-nav-link>Featured YouTube Videos</a>
+        <a href="#videos" data-nav-link>Featured Videos</a>
         <a href="#credentials" data-nav-link>Professional Certifications</a>
         <a href="#testimonials" data-nav-link>Stories of Hope & Recovery</a>
         <a href="#research" data-nav-link>Research & Publications</a>
@@ -555,7 +620,7 @@ function renderMainLayout(content) {
           <p class="modal-subtitle">Schedule a consultation with Dr. Makis to discuss your treatment options</p>
         </div>
         
-        <form class="consultation-form" data-consultation-form>
+        <form class="consultation-form" data-consultation-form action="https://formspree.io/f/mblvaalz" method="POST">
           <div class="form-group">
             <label for="fullName">Full Name *</label>
             <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
@@ -643,7 +708,6 @@ export function mountHomeApp(root, content) {
 
   const state = {
     currentProductIndex: 0,
-    currentTestimonialIndex: 0,
     activeSurface: null,
     previousFocus: null,
   }
@@ -922,51 +986,43 @@ export function mountHomeApp(root, content) {
     })
   }
 
-  function updateTestimonialCarousel(nextIndex) {
-    const slides = Array.from(root.querySelectorAll('[data-testimonial-slide]'))
-    const dots = Array.from(root.querySelectorAll('[data-testimonial-dot]'))
-
-    if (!slides.length) return
-
-    const clamped = (nextIndex + slides.length) % slides.length
-    state.currentTestimonialIndex = clamped
-
-    slides.forEach((slide, index) => {
-      const active = index === clamped
-      slide.classList.toggle('is-active', active)
-      slide.setAttribute('aria-hidden', active ? 'false' : 'true')
-    })
-
-    dots.forEach((dot, index) => {
-      const active = index === clamped
-      dot.classList.toggle('is-active', active)
-      dot.setAttribute('aria-selected', active ? 'true' : 'false')
-    })
-  }
   // Form submission handler
-  root.addEventListener('submit', (event) => {
+  root.addEventListener('submit', async (event) => {
     if (event.target.matches('[data-consultation-form]')) {
       event.preventDefault()
-      
-      // Get form data
-      const formData = new FormData(event.target)
-      const data = Object.fromEntries(formData)
-      
-      // Placeholder for actual form submission
-      console.log('Consultation request submitted:', data)
-      
-      // Show success message
-      showSuccessMessage('Thank you for your consultation request! We will contact you shortly to confirm your appointment.')
-      
-      // Close the modal
-      closeSurface('consultation')
-      
-      // Reset the form
-      event.target.reset()
+      const form = event.target instanceof HTMLFormElement ? event.target : null
+      if (!form) return
+
+      const submitButton = form.querySelector('button[type="submit"]')
+      const originalLabel = submitButton instanceof HTMLButtonElement ? submitButton.textContent : ''
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true
+        submitButton.textContent = 'Submitting...'
+      }
+
+      try {
+        await submitConsultationRequest(form)
+        showSuccessMessage(
+          'Thank you for your consultation request. We will contact you shortly to confirm your appointment.'
+        )
+        closeSurface('consultation')
+        form.reset()
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : 'Unable to submit your consultation request right now. Please try again.'
+        showSuccessMessage(message, true)
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false
+          submitButton.textContent = originalLabel || 'Request Consultation'
+        }
+      }
     }
   })
 
-  function showSuccessMessage(message) {
+  function showSuccessMessage(message, isError = false) {
     // Create success message element
     const successDiv = document.createElement('div')
     successDiv.className = 'success-message'
@@ -975,7 +1031,7 @@ export function mountHomeApp(root, content) {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #10b981;
+      background: ${isError ? '#dc2626' : '#10b981'};
       color: white;
       padding: 16px 24px;
       border-radius: 8px;
@@ -1128,23 +1184,6 @@ export function mountHomeApp(root, content) {
       return
     }
 
-    if (target.closest('[data-testimonial-prev]')) {
-      updateTestimonialCarousel(state.currentTestimonialIndex - 1)
-      return
-    }
-
-    if (target.closest('[data-testimonial-next]')) {
-      updateTestimonialCarousel(state.currentTestimonialIndex + 1)
-      return
-    }
-
-    const testimonialDot = target.closest('[data-testimonial-dot]')
-    if (testimonialDot) {
-      const index = Number(testimonialDot.getAttribute('data-testimonial-dot'))
-      if (!Number.isNaN(index)) updateTestimonialCarousel(index)
-      return
-    }
-
     const scrollTargetBtn = target.closest('[data-scroll-target]')
     if (scrollTargetBtn) {
       const targetSection = scrollTargetBtn.getAttribute('data-scroll-target')
@@ -1222,5 +1261,4 @@ export function mountHomeApp(root, content) {
 
   renderCart()
   updateProductCarousel(0)
-  updateTestimonialCarousel(0)
 }

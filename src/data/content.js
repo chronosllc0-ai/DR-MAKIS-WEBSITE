@@ -2,7 +2,7 @@
   brand: {
     doctorName: 'Dr. William Makis',
     highlightedLastName: 'Makis',
-    logo: '/placeholders/avatar-placeholder.svg',
+    logo: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
     tagline: 'Leading the way in advanced cancer diagnostics and personalized oncology care.',
   },
   contact: {
@@ -19,23 +19,30 @@
       'Pioneering personalized oncology treatments with cutting-edge diagnostic technologies and evidence-based protocols.',
     ctaPrimary: 'Schedule Consultation',
     ctaSecondary: 'Achievements',
-    backgroundImage: '/placeholders/hero-placeholder.svg',
+    profileTitle: 'Dr. William Makis, MD',
+    profileSubtitle: 'Nuclear Medicine Physician & Oncologist',
+    profileHighlight: '500+ Research Publications',
+    backgroundImage: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
     stats: [
       {
         label: 'Patients Treated',
         value: '15,000+',
+        icon: 'users',
       },
       {
         label: 'Years Experience',
         value: '25+',
+        icon: 'badge',
       },
       {
         label: 'Success Rate',
         value: '98%',
+        icon: 'clock',
       },
       {
         label: 'Research Publications',
         value: '500+',
+        icon: 'document',
       },
     ],
   },
@@ -49,7 +56,7 @@
         title: 'Supplements',
         description: 'Premium vitamins and natural supplements',
         cta: 'Explore Products',
-        image: '/placeholders/card-placeholder.svg',
+        image: 'https://i.postimg.cc/YCC5N6K1/vitamins-dietary-supplements.png',
       },
       {
         id: 'protocols',
@@ -57,7 +64,7 @@
         title: 'Protocols',
         description: 'Comprehensive wellness programs',
         cta: 'Explore Protocols',
-        image: '/placeholders/card-placeholder.svg',
+        image: 'https://i.postimg.cc/pTCQBFtm/Screenshot-20260303-135036-Photo-Editor.jpg',
       },
       {
         id: 'consultations',
@@ -65,7 +72,7 @@
         title: 'Consultations',
         description: 'Personalized expert guidance',
         cta: 'Book Now',
-        image: '/placeholders/card-placeholder.svg',
+        image: 'https://i.postimg.cc/Fz1SgCpt/doctor-writing-a-medical-prescription.jpg',
       },
     ],
   },
@@ -151,7 +158,7 @@
         'Oncoplastic Surgery Pathway',
       ],
       price: 500,
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/bJnryX37/360-F-1693923845-5Cp-TDSP0vqo-U5Jy-WAQ2G06Pnvj-XPc-Ii-V.jpg',
     },
     {
       id: 'lung-cancer',
@@ -178,7 +185,7 @@
         'Liquid Biopsy Monitoring',
       ],
       price: 500,
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/Xq3jnrZk/images.jpg',
     },
     {
       id: 'colorectal-cancer',
@@ -205,7 +212,7 @@
         'Liver Metastasis Treatment',
       ],
       price: 500,
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/d30fRFgq/oandasan-access-to-what.jpg',
     },
     {
       id: 'prostate-cancer',
@@ -232,7 +239,7 @@
         'PSMA-Targeted Therapy',
       ],
       price: 500,
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/65v0kTrM/78ffb81ad0e9abafa494e65c8edd2d14.jpg',
     },
     {
       id: 'skin-cancer',
@@ -259,7 +266,7 @@
         'Targeted Therapy (BRAF)',
       ],
       price: 500,
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/cHPD337w/734677.jpg',
     },
     {
       id: 'blood-cancers',
@@ -286,7 +293,7 @@
         'Clinical Trials',
       ],
       price: 500,
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/8chbr0P2/54b171d23b6a3e0afd307c000de91615-78680c5367.webp',
     },
   ],
   processSection: {
@@ -350,7 +357,7 @@
         'Start with 0.5ml (25mg CBD) once daily. May increase to 1ml twice daily as needed.',
       ingredients: 'Full-spectrum hemp extract, MCT coconut oil, natural terpenes',
       size: '30ml bottle (1500mg CBD)',
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/yNZ3dSNr/full-spectrum-cbd-oil.png',
     },
     {
       id: 'curcumin',
@@ -371,7 +378,7 @@
         'Take 2 capsules daily with meals. For enhanced absorption, take with black pepper or fatty foods.',
       ingredients: 'Curcumin extract (95% curcuminoids), BioPerine black pepper extract, vegetable capsule',
       size: '180 capsules (3 month supply)',
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/CMPh3xhH/Screenshot-20260303-145321-Google(1).jpg',
     },
     {
       id: 'fenbendazole',
@@ -392,7 +399,7 @@
         'Consult with your healthcare provider for personalized dosing recommendations. Common protocols vary.',
       ingredients: 'Fenbendazole 222mg, microcrystalline cellulose, vegetable capsule',
       size: '30 capsules per bottle',
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/05BvtXnH/FENBEN-CAPS.jpg',
     },
     {
       id: 'ivermectin',
@@ -414,7 +421,7 @@
       ingredients:
         'Ivermectin (3mg or 12mg), lactose monohydrate, microcrystalline cellulose',
       size: '10 tablets per blister pack',
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/28dDzjms/5333.jpg',
     },
     {
       id: 'artemisinin',
@@ -435,7 +442,7 @@
         'Take 1-2 capsules on an empty stomach. Cycle usage: 2 weeks on, 1 week off recommended.',
       ingredients: 'Artemisinin extract 500mg, rice flour, vegetable capsule',
       size: '60 capsules per bottle',
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/rySb4hbk/71Y6k-Mp-SCL-jpg-BO30-255-255-255-UF750-750-SR1910-1000-0-C-QL100.jpg',
     },
     {
       id: 'methylene-blue',
@@ -456,7 +463,7 @@
         'Start with 1-2 drops (0.5-1mg) in water. May gradually increase. Do not exceed recommended amounts.',
       ingredients: 'Methylene blue USP 1% solution, purified water',
       size: '10ml dropper bottle (10mg/ml)',
-      image: '/placeholders/card-placeholder.svg',
+      image: 'https://i.postimg.cc/x8Y6g27m/71fa-PF2El-IL-AC-UF1000-1000-QL80.jpg',
     },
   ],
   educationalSection: {
@@ -465,33 +472,46 @@
     description:
       'Discover his approach to integrative medicine through real insights and patient stories.',
     featuredVideo: {
+      title: 'Dr. Makis in Action',
       tag: 'Featured',
       duration: '12:45',
       views: '24.5K views',
       image: '/placeholders/video-placeholder.svg',
+      url: 'https://streamable.com/0q09gf',
+      embedUrl: 'https://streamable.com/e/0q09gf?',
+      embedPadding: '56.250%',
     },
     galleryKicker: 'VIDEO GALLERY',
-    galleryTitle: 'Featured YouTube Videos',
+    galleryTitle: 'Featured Videos',
     galleryDescription:
-      'Watch Dr. William Makis share his expertise on various health topics and medical discussions.',
+      'Watch Dr. William Makis share his expertise on key health topics and medical discussions.',
     videos: [
       {
         id: 'video-1',
         title: 'Dr. Makis on Cancer Research',
         description: 'Insights on breakthrough cancer research and treatment approaches.',
         image: '/placeholders/video-placeholder.svg',
+        url: 'https://streamable.com/69gom2',
+        embedUrl: 'https://streamable.com/e/69gom2?',
+        embedPadding: '56.250%',
       },
       {
         id: 'video-2',
         title: 'Understanding Modern Medicine',
         description: 'A deep dive into integrative medicine and patient care.',
         image: '/placeholders/video-placeholder.svg',
+        url: 'https://streamable.com/j3pca8',
+        embedUrl: 'https://streamable.com/e/j3pca8?',
+        embedPadding: '56.250%',
       },
       {
         id: 'video-3',
         title: 'Health & Wellness Discussion',
         description: 'Dr. Makis discusses important health topics and prevention strategies.',
         image: '/placeholders/video-placeholder.svg',
+        url: 'https://streamable.com/3hv2yh',
+        embedUrl: 'https://streamable.com/e/3hv2yh?',
+        embedPadding: '56.250%',
       },
     ],
   },
@@ -509,7 +529,7 @@
         status: 'Verified',
         description:
           "Doctorem Medicinae et Chirurgiae Magistrum - The highest medical degree awarded by McGill University, one of Canada's most prestigious medical schools.",
-        image: '/placeholders/certificate-placeholder.svg',
+        image: 'https://i.postimg.cc/YS6gRWwP/Screenshot-20260303-142523-Chrome-Beta.jpg',
       },
     ],
   },
@@ -525,7 +545,7 @@
           'The team at Dr. William Makis gave me hope when I needed it most. Their personalized approach to my treatment made all the difference in my recovery journey.',
         name: 'Jennifer Martinez',
         role: 'Breast Cancer Survivor',
-        avatar: '/placeholders/avatar-placeholder.svg',
+        avatar: 'https://i.postimg.cc/VvRT0wvF/Screenshot-20260304-215438-Chrome-Beta.jpg',
       },
       {
         id: 'linda-davis',
@@ -533,7 +553,7 @@
           'From diagnosis to treatment, every step was handled with such care and professionalism. The innovative therapies here truly saved my life.',
         name: 'Linda Davis',
         role: 'Lung Cancer Patient',
-        avatar: '/placeholders/avatar-placeholder.svg',
+        avatar: 'https://i.postimg.cc/hjR3Cv7v/b865d335-b1f8-4c3a-bc6c-3583b094d29d.jpg',
       },
       {
         id: 'leo-thompson',
@@ -541,7 +561,7 @@
           'The support I received went beyond medical care. The whole team treated me like family and ensured I was comfortable throughout my treatment.',
         name: 'Leo Thompson',
         role: 'Colorectal Cancer Survivor',
-        avatar: '/placeholders/avatar-placeholder.svg',
+        avatar: 'https://i.postimg.cc/908bjQzL/501898ee-c038-4f21-96f5-a291205a0286.jpg',
       },
       {
         id: 'michael-johnson',
@@ -549,7 +569,23 @@
           'Dr. Makis and his team are exceptional. Their expertise and compassion made a difficult time much more manageable. Forever grateful.',
         name: 'Michael Johnson',
         role: 'Prostate Cancer Survivor',
-        avatar: '/placeholders/avatar-placeholder.svg',
+        avatar: 'https://i.postimg.cc/VL299TtK/3c49ce89-9283-4389-a8aa-d0b54fe4213e.jpg',
+      },
+      {
+        id: 'david-goose',
+        quote:
+          'The cutting-edge treatments and caring staff gave me a second chance at life. I cannot thank Dr. William Makis enough for their dedication.',
+        name: 'David Goose',
+        role: 'Ovarian Cancer Survivor',
+        avatar: 'https://i.postimg.cc/sDG72cL2/32d2409e-3478-4b0f-be6a-4460af96d028.jpg',
+      },
+      {
+        id: 'mary-davies',
+        quote:
+          'From my first consultation to my final treatment, the team was with me every step of the way. Their expertise and warmth made all the difference.',
+        name: 'Mary Davies',
+        role: 'Skin Cancer Survivor',
+        avatar: 'https://i.postimg.cc/3JjmsZb0/Screenshot-20260304-221340-Chrome-Beta.jpg',
       },
     ],
   },
@@ -570,6 +606,7 @@
         source: 'Nature Medicine',
         year: '2024',
         citations: '156 citations',
+        url: 'https://www.nature.com/nm/',
       },
       {
         id: 'pub-2',
@@ -578,6 +615,7 @@
         source: 'The Lancet Oncology',
         year: '2024',
         citations: '203 citations',
+        url: 'https://www.thelancet.com/journals/lanonc/home',
       },
       {
         id: 'pub-3',
@@ -586,6 +624,7 @@
         source: 'JAMA Oncology',
         year: '2023',
         citations: '289 citations',
+        url: 'https://jamanetwork.com/journals/jamaoncology',
       },
       {
         id: 'pub-4',
@@ -594,6 +633,7 @@
         source: 'New England Journal of Medicine',
         year: '2023',
         citations: '412 citations',
+        url: 'https://www.nejm.org/',
       },
     ],
   },
@@ -611,7 +651,6 @@
     legal: ['Privacy Policy', 'Terms of Service', 'HIPAA Compliance'],
     copyright: '© 2026 Dr. William Makis. All rights reserved.',
     phone: '1-800-WILLIAM-MAKIS',
-    todo: 'TODO_COPY_SUPPORT_HOURS',
   },
   supplementsPage: {
     hero: {
@@ -620,7 +659,7 @@
     },
     filters: ["All Products", "In Stock", "Featured", "Out of Stock"],
     productCount: "19 Products"
-  },
+  },
   supplements: [
     {
       id: 'fenbendazole',
@@ -633,7 +672,20 @@
       rating: 4.5,
       price: 250,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/zGjHR1wj/images-(3).jpg'
+    },
+    {
+      id: 'ivermectin-support-3mg-12mg',
+      name: 'Ivermectin Support (3mg & 12mg)',
+      subtitle: 'Pharmaceutical Grade Tablets',
+      shortDescription: 'Off-label use under investigation for supportive properties...',
+      description: 'Pharmaceutical-grade ivermectin tablets available in 3mg and 12mg strengths. This Nobel Prize-winning compound is being investigated in various research studies for potential supportive health applications.',
+      duration: '30 Days',
+      reviews: 89,
+      rating: 4.5,
+      price: 250,
+      inStock: true,
+      image: 'https://i.postimg.cc/fynRrHjY/stromectol-1024x683.jpg'
     },
     {
       id: 'artemisinin',
@@ -646,7 +698,7 @@
       rating: 4.5,
       price: 260,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/zBqdFN4y/images-(5).jpg'
     },
     {
       id: 'zeolite',
@@ -659,7 +711,7 @@
       rating: 4.5,
       price: 180,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/SKdLqMt4/images-(2).jpg'
     },
     {
       id: 'ivermectin-3mg',
@@ -672,7 +724,7 @@
       rating: 4.5,
       price: 250,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/FHkWNh9R/stromectol-1024x683.jpg'
     },
     {
       id: 'ivermectin-6mg',
@@ -685,7 +737,7 @@
       rating: 4.5,
       price: 270,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/B6SBL3GY/Screenshot-20260303-143108-Google.jpg'
     },
     {
       id: 'vitamin-e',
@@ -698,7 +750,7 @@
       rating: 4.5,
       price: 120,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/TPCWsWZK/vitamin-e-600mg-capsules-for-face-and-hair-100-natural-vitamin-e-paraben-free-60-capsules.jpg'
     },
     {
       id: 'methylene-blue',
@@ -711,7 +763,7 @@
       rating: 4.5,
       price: 250,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/G3YvL9Dj/download.jpg'
     },
     {
       id: 'hydroxychloroquine',
@@ -724,7 +776,137 @@
       rating: 4.5,
       price: 280,
       inStock: true,
-      image: '/placeholders/card-placeholder.svg'
+      image: 'https://i.postimg.cc/8C2s9BZG/400-MG-Hydroxychloroquine-Sulfate-Tablets-USP.jpg'
+    },
+    {
+      id: 'hydroxychloroquine-200mg',
+      name: 'Hydroxychloroquine 200mg',
+      subtitle: 'Lower-Dose Research Option',
+      shortDescription: '200mg option for research and clinical settings...',
+      description: 'Lower-dose hydroxychloroquine option used in immune-related and supportive care research pathways.',
+      duration: '30 Days',
+      reviews: 63,
+      rating: 4,
+      price: 270,
+      inStock: true,
+      image: 'https://i.postimg.cc/k4PXfM5G/Hydroxychloroquine-200mg.png'
+    },
+    {
+      id: 'fenbendazole-222mg',
+      name: 'Fenbendazole 222mg',
+      subtitle: 'Research Tablet Format',
+      shortDescription: '222mg formulation used in research protocols...',
+      description: 'Tablet-style fenbendazole format aligned to common 222mg regimen references used in ongoing wellness research.',
+      duration: '30 Days',
+      reviews: 98,
+      rating: 4.5,
+      price: 160,
+      inStock: true,
+      image: 'https://i.postimg.cc/85GNLyyY/222-mg-fenbendazole-tablet.jpg'
+    },
+    {
+      id: 'cbd-oil',
+      name: 'CBD Oil',
+      subtitle: 'Cannabidiol Wellness Support',
+      shortDescription: 'Cannabidiol oil for wellness support...',
+      description: 'Broad-spectrum CBD oil used as a complementary wellness product for daily balance and supportive care.',
+      duration: '30 Days',
+      reviews: 203,
+      rating: 4.5,
+      price: 175,
+      inStock: true,
+      image: 'https://i.postimg.cc/d3SbNnBP/CBD-Oil-for-Horses.jpg'
+    },
+    {
+      id: 'nicotine-patches-7mg',
+      name: 'Nicotine Patches 7mg',
+      subtitle: 'Transdermal Support Patch',
+      shortDescription: '7mg transdermal nicotine patches...',
+      description: 'Low-strength transdermal nicotine patch option used in supportive and investigational pathways.',
+      duration: '30 Days',
+      reviews: 78,
+      rating: 4,
+      price: 230,
+      inStock: true,
+      image: 'https://i.postimg.cc/59GKGHJM/nicotex-nicotine-patch-7mg-7-patcheshelps-quit-smoking-3-1654077465.jpg'
+    },
+    {
+      id: 'nicotine-patches-14mg',
+      name: 'Nicotine Patches 14mg',
+      subtitle: 'Higher-Strength Patch Option',
+      shortDescription: '14mg transdermal nicotine patches...',
+      description: 'Higher-strength transdermal patch option for users who need a stepped regimen with greater daily delivery.',
+      duration: '30 Days',
+      reviews: 91,
+      rating: 4,
+      price: 135,
+      inStock: true,
+      image: 'https://i.postimg.cc/Y9PRJPJQ/niquitin-patch-front-step2-14mg.png'
+    },
+    {
+      id: 'soolantra-cream',
+      name: 'Soolantra (Ivermectin Cream)',
+      subtitle: 'Topical Ivermectin Formula',
+      shortDescription: 'Ivermectin topical cream for dermatological support...',
+      description: 'Topical ivermectin cream option designed for dermatological care and complementary skin support routines.',
+      duration: '30 Days',
+      reviews: 56,
+      rating: 4,
+      price: 180,
+      inStock: true,
+      image: 'https://i.postimg.cc/Y25KFDhh/soolantra.jpg'
+    },
+    {
+      id: 'curcumin-600-1500mg',
+      name: 'Curcumin 600-1500mg',
+      subtitle: 'High-Dose Curcumin Support',
+      shortDescription: 'Curcumin high-dose supplement for inflammation balance...',
+      description: 'Curcumin blend formulated for antioxidant and inflammation-support routines with flexible dose ranges.',
+      duration: '45 Days',
+      reviews: 167,
+      rating: 4,
+      price: 155,
+      inStock: true,
+      image: 'https://i.postimg.cc/pT37DyXM/Screenshot-20260303-145321-Google(1).jpg'
+    },
+    {
+      id: 'soursop-tea',
+      name: 'Soursop Tea',
+      subtitle: 'Botanical Herbal Tea',
+      shortDescription: 'Tea made from soursop leaves...',
+      description: 'Herbal tea blend prepared from soursop leaves and used in traditional wellness routines.',
+      duration: '30 Days',
+      reviews: 99,
+      rating: 4,
+      price: 225,
+      inStock: true,
+      image: 'https://i.postimg.cc/s2X0q5Mj/81Aga5ZFGp-L-AC-UF894-1000-QL80.jpg'
+    },
+    {
+      id: 'ivermectin-horse-paste-strip',
+      name: 'Ivermectin Horse Paste & Strip',
+      subtitle: 'Paste + Dosing Strip Format',
+      shortDescription: 'Ivermectin horse paste with dosing strip...',
+      description: 'Alternative ivermectin format bundled with dosing strip references for investigational use contexts.',
+      duration: '30 Days',
+      reviews: 41,
+      rating: 3.5,
+      price: 135,
+      inStock: true,
+      image: 'https://i.postimg.cc/bNhV87ZT/223590-17fa9418-10170-1770050663.jpg'
+    },
+    {
+      id: 'methylene-blue-12mg-pills',
+      name: 'Methylene Blue 12mg Pills',
+      subtitle: 'Tablet Formulation',
+      shortDescription: '12mg pill formulation of methylene blue for research...',
+      description: 'Tablet-based methylene blue format in 12mg units for users preferring capsule or tablet administration.',
+      duration: '30 Days',
+      reviews: 67,
+      rating: 3.5,
+      price: 175,
+      inStock: true,
+      image: 'https://i.postimg.cc/4yZvkTWt/81Wzk-K61-WL.jpg'
     }
   ],
   consultationsPage: {
@@ -1028,3 +1210,5 @@
 }
 
 export const DEFAULT_PROTOCOL_PRICE = 500
+
+

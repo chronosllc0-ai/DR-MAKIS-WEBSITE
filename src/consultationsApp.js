@@ -10,7 +10,53 @@ import {
   updateQuantity,
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
-import { escapeHtml, focusTrap, scrollLock } from './components/utils.js'
+import { escapeHtml, focusTrap, scrollLock, submitConsultationRequest } from './components/utils.js'
+
+const FOOTER_SECTION_MAP = {
+  services: {
+    'Cancer Diagnostics': 'expertise',
+    'Treatment Programs': 'protocols',
+    'Clinical Trials': 'research',
+    'Second Opinions': 'contact',
+  },
+  resources: {
+    'Patient Portal': 'contact',
+    'Research Publications': 'research',
+    'Insurance & Billing': 'contact',
+    FAQs: 'contact',
+  },
+  about: {
+    'Our Team': 'expertise',
+    Facilities: 'contact',
+    Careers: 'contact',
+    'Contact Us': 'contact',
+  },
+  legal: {
+    'Privacy Policy': 'footer',
+    'Terms of Service': 'footer',
+    'HIPAA Compliance': 'footer',
+  },
+}
+
+function footerListTemplate(items, group, hrefPrefix = '/') {
+  const sectionMap = FOOTER_SECTION_MAP[group] || {}
+  return items
+    .map((item) => {
+      const section = sectionMap[item] || 'contact'
+      return `<li><a href="${hrefPrefix}#${section}">${escapeHtml(item)}</a></li>`
+    })
+    .join('')
+}
+
+function footerLegalTemplate(items, hrefPrefix = '/') {
+  const sectionMap = FOOTER_SECTION_MAP.legal
+  return items
+    .map((item) => {
+      const section = sectionMap[item] || 'footer'
+      return `<a href="${hrefPrefix}#${section}">${escapeHtml(item)}</a>`
+    })
+    .join('')
+}
 
 function consultationCardTemplate(consultation) {
   const cardIcon = consultation.icon || 'calendar'
@@ -179,24 +225,24 @@ function renderConsultationsLayout(content) {
           </div>
         </div>
         <div class="social-row">
-          <button class="icon-button ghost" aria-label="Facebook">${icon('facebook')}</button>
-          <button class="icon-button ghost" aria-label="Twitter">${icon('twitter')}</button>
-          <button class="icon-button ghost" aria-label="LinkedIn">${icon('linkedin')}</button>
-          <button class="icon-button ghost" aria-label="Instagram">${icon('instagram')}</button>
+          <a class="icon-button ghost" href="/#contact" aria-label="Facebook">${icon('facebook')}</a>
+          <a class="icon-button ghost" href="/#contact" aria-label="Twitter">${icon('twitter')}</a>
+          <a class="icon-button ghost" href="/#contact" aria-label="LinkedIn">${icon('linkedin')}</a>
+          <a class="icon-button ghost" href="/#contact" aria-label="Instagram">${icon('instagram')}</a>
         </div>
 
         <div class="footer-columns">
           <div>
             <h3>Services</h3>
-            <ul>${content.footer.services.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            <ul>${footerListTemplate(content.footer.services, 'services', '/')}</ul>
           </div>
           <div>
             <h3>Resources</h3>
-            <ul>${content.footer.resources.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            <ul>${footerListTemplate(content.footer.resources, 'resources', '/')}</ul>
           </div>
           <div>
             <h3>About</h3>
-            <ul>${content.footer.about.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            <ul>${footerListTemplate(content.footer.about, 'about', '/')}</ul>
           </div>
           <div>
             <h3>Contact</h3>
@@ -205,27 +251,16 @@ function renderConsultationsLayout(content) {
     contact.telegramUrl
   )}" target="_blank" rel="noopener noreferrer">${escapeHtml(contact.telegramHandle)}</a></li>
               <li>${icon('mail')} <a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a></li>
-              <li>${escapeHtml(content.footer.todo)}</li>
             </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
           <p>${escapeHtml(content.footer.copyright)}</p>
-          <div class="legal-links">${content.footer.legal
-            .map((item) => `<a href="#">${escapeHtml(item)}</a>`)
-            .join('')}</div>
+          <div class="legal-links">${footerLegalTemplate(content.footer.legal, '/')}</div>
         </div>
       </footer>
 
-      <a class="floating-whatsapp" href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        ${icon('whatsapp')}
-        <span class="pulse-dot"></span>
-      </a>
-      <a class="floating-messenger" href="https://m.me/drmakis" target="_blank" rel="noopener noreferrer" aria-label="Chat on Messenger">
-        ${icon('facebook')}
-        <span class="pulse-dot"></span>
-      </a>
     </div>
 
     <div class="overlay" data-overlay="nav" hidden></div>
@@ -241,7 +276,7 @@ function renderConsultationsLayout(content) {
         <a href="/#protocols" data-nav-link>Treatment Protocols</a>
         <a href="/#process" data-nav-link>Our Process</a>
         <a href="/#products" data-nav-link>Cancer Support Products</a>
-        <a href="/#videos" data-nav-link>Featured YouTube Videos</a>
+        <a href="/#videos" data-nav-link>Featured Videos</a>
         <a href="/#credentials" data-nav-link>Professional Certifications</a>
         <a href="/#testimonials" data-nav-link>Stories of Hope & Recovery</a>
         <a href="/#research" data-nav-link>Research & Publications</a>
@@ -275,7 +310,7 @@ function renderConsultationsLayout(content) {
           <p class="modal-subtitle">Schedule a consultation with Dr. Makis to discuss your treatment options</p>
         </div>
 
-        <form class="consultation-form" data-consultation-form>
+        <form class="consultation-form" data-consultation-form action="https://formspree.io/f/mblvaalz" method="POST">
           <div class="form-group">
             <label for="fullName">Full Name *</label>
             <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
@@ -533,17 +568,36 @@ export function mountConsultationsApp(root, content) {
     renderCart()
   }
 
-  root.addEventListener('submit', (event) => {
+  root.addEventListener('submit', async (event) => {
     if (event.target.matches('[data-consultation-form]')) {
       event.preventDefault()
+      const form = event.target instanceof HTMLFormElement ? event.target : null
+      if (!form) return
 
-      const formData = new FormData(event.target)
-      const data = Object.fromEntries(formData)
-      console.log('Consultation request submitted:', data)
+      const submitButton = form.querySelector('button[type="submit"]')
+      const originalLabel = submitButton instanceof HTMLButtonElement ? submitButton.textContent : ''
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true
+        submitButton.textContent = 'Submitting...'
+      }
 
-      alert('Thank you for your consultation request! We will contact you shortly to confirm your appointment.')
-      closeSurface('consultation')
-      event.target.reset()
+      try {
+        await submitConsultationRequest(form)
+        alert('Thank you for your consultation request! We will contact you shortly to confirm your appointment.')
+        closeSurface('consultation')
+        form.reset()
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : 'Unable to submit your consultation request right now. Please try again.'
+        alert(message)
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false
+          submitButton.textContent = originalLabel || 'Request Consultation'
+        }
+      }
     }
   })
 

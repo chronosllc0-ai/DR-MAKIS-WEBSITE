@@ -7,7 +7,7 @@
   getTotals,
 } from './cartStore.js'
 import { icon } from './icons.js'
-import { escapeHtml } from './utils.js'
+import { escapeHtml, submitFormspree } from './utils.js'
 
 function cartSummaryItems(items) {
   if (!items.length) {
@@ -54,7 +54,7 @@ function checkoutTemplate(content, cart, statusMessage = '') {
         <section class="section-panel checkout-panel content-shell">
           <h1>Checkout</h1>
 
-          <form class="checkout-form" id="checkout-form" novalidate>
+          <form class="checkout-form" id="checkout-form" action="https://formspree.io/f/mblvaalz" method="POST" novalidate>
             <article class="form-card">
               <h2>Customer Information</h2>
               <label>
@@ -101,14 +101,6 @@ function checkoutTemplate(content, cart, statusMessage = '') {
           </form>
         </section>
       </main>
-
-      <a class="floating-telegram" href="${escapeHtml(content.contact.telegramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Open Telegram chat">
-        ${icon('telegram')}
-        <span class="pulse-dot"></span>
-      </a>
-      <button class="floating-chat-placeholder" aria-label="Chat placeholder for Smartsupp" type="button">
-        ${icon('chat')}
-      </button>
     </div>
   `
 }
@@ -162,26 +154,23 @@ export function mountCheckoutApp(root, content) {
 
       try {
         const payload = buildCheckoutPayload(customer, currentCart)
-        const response = await fetch('/.netlify/functions/checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
+        const totals = getTotals(currentCart)
+        await submitFormspree(form, {
+          formType: 'checkout-order',
+          checkoutPayload: JSON.stringify(payload),
+          cartItemCount: currentCart.length,
+          cartTotal: totals.total,
         })
-
-        const result = await response.json().catch(() => null)
-
-        if (!response.ok || !result?.ok) {
-          render(result?.message || 'Unable to submit your order request right now. Please try again.')
-          return
-        }
 
         clearCart()
         form.reset()
-        render(result.message || 'Order request submitted successfully. We will contact you soon.')
-      } catch {
-        render('Unable to submit your order request right now. Please try again.')
+        render('Order request submitted successfully. We will contact you soon.')
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : 'Unable to submit your order request right now. Please try again.'
+        render(message)
       }
     })
   }

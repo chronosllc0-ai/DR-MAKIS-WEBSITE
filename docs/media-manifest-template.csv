@@ -1,0 +1,12 @@
+slot_key,page,entity_id,field,media_type,source,notes
+home.hero.background,home,hero,backgroundImage,image,/assets/images/home/hero-background.jpg,Main hero background
+home.hero.profile,home,brand,logo,image,/assets/images/brand/dr-william-makis.jpg,Header avatar/logo
+home.education.featured_thumb,home,featuredVideo,image,image,/assets/images/videos/featured-video-thumb.jpg,Featured video thumbnail
+home.education.video_1_thumb,home,video-1,image,image,/assets/images/videos/video-1-thumb.jpg,Gallery card thumbnail
+home.education.video_1_url,home,video-1,videoUrl,video,https://www.youtube.com/watch?v=REPLACE_ME,YouTube/Vimeo URL
+supplements.fenbendazole,supplements,fenbendazole,image,image,/assets/images/supplements/fenbendazole.jpg,Product card and modal image
+supplements.ivermectin_3mg,supplements,ivermectin-3mg,image,image,/assets/images/supplements/ivermectin-3mg.jpg,Product card and modal image
+supplements.methylene_blue_12mg,supplements,methylene-blue-12mg-pills,image,image,/assets/images/supplements/methylene-blue-12mg-pills.jpg,Page 3 item
+protocols.ivermectin_protocol,protocols,ivermectin-protocol,image,image,/assets/images/protocols/ivermectin-protocol.jpg,Protocol card and modal image
+consultations.initial,consultations,initial-consultation,image,image,/assets/images/consultations/initial-consultation.jpg,Consultation card image if used
+certifications.mdcm,home,mdcm,image,image,/assets/images/certifications/mdcm-certificate.jpg,Certificate card image

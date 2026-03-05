@@ -19,6 +19,7 @@
   calendar: `<rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M3 10h18"></path>`,
   arrowRight: `<path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path>`,
   arrowLeft: `<path d="M19 12H5"></path><path d="m11 5-7 7 7 7"></path>`,
+  externalLink: `<path d="M14 5h5v5"></path><path d="M10 14 19 5"></path><path d="M19 14v5h-5"></path><path d="M5 10v9h9"></path>`,
   clock: `<circle cx="12" cy="12" r="9"></circle><path d="M12 7v6l4 2"></path>`,
   video: `<rect x="2" y="6" width="14" height="12" rx="2"></rect><path d="m16 10 6-3v10l-6-3z"></path>`,
   users: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>`,
