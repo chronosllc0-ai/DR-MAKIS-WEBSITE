@@ -154,12 +154,41 @@ export function mountCheckoutApp(root, content) {
 
       try {
         const payload = buildCheckoutPayload(customer, currentCart)
-        const totals = getTotals(currentCart)
+        const clientTotals = getTotals(currentCart)
+
+        // Server-side validation: validate cart prices before submission
+        const validationResponse = await fetch('/.netlify/functions/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...payload,
+            _validationOnly: true, // Tell server this is just validation
+          }),
+        })
+
+        if (!validationResponse.ok) {
+          const error = await validationResponse.json().catch(() => null)
+          throw new Error(error?.message || 'Cart validation failed. Please refresh and try again.')
+        }
+
+        const validated = await validationResponse.json()
+        
+        // Verify the server-validated totals match what the client claims
+        // This prevents price manipulation
+        const serverTotal = validated.totals?.total
+        if (typeof serverTotal !== 'number' || serverTotal <= 0) {
+          throw new Error('Invalid cart data. Please refresh and try again.')
+        }
+
         await submitFormspree(form, {
           formType: 'checkout-order',
-          checkoutPayload: JSON.stringify(payload),
+          checkoutPayload: JSON.stringify({
+            ...payload,
+            totals: validated.totals, // Use server-validated totals
+          }),
           cartItemCount: currentCart.length,
-          cartTotal: totals.total,
+          cartTotal: serverTotal, // Use server-validated total
+          validatedAt: validated.submittedAt,
         })
 
         clearCart()

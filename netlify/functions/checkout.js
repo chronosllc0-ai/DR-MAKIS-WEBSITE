@@ -94,6 +94,20 @@ export async function handler(event) {
   const total = Number(payload?.totals?.total || 0)
   const submittedAt = sanitizeText(payload?.meta?.submittedAt, 60) || new Date().toISOString()
 
+  // Validation-only mode: just validate and return sanitized data without submitting to Formspree
+  if (payload?._validationOnly) {
+    return json(200, {
+      ok: true,
+      validated: true,
+      totals: {
+        subtotal: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+        shipping: 0,
+        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+      },
+      submittedAt,
+    })
+  }
+
   const formspreePayload = {
     fullName,
     email,
