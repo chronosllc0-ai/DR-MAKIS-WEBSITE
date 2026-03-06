@@ -99,3 +99,61 @@ export async function submitFormspree(formElement, extraFields = {}) {
 export async function submitConsultationRequest(formElement) {
   return submitFormspree(formElement)
 }
+
+
+export function setupRevealTransitions(root = document) {
+  const container = root instanceof Element || root instanceof Document ? root : document
+  const revealSelector = [
+    '.section-panel',
+    '.category-card',
+    '.protocol-card',
+    '.expertise-card',
+    '.process-card',
+    '.testimonial-card',
+    '.video-card',
+    '.publication-card',
+    '.supplement-card',
+    '.consultation-card',
+    '.featured-card',
+  ].join(',')
+
+  const nodes = Array.from(container.querySelectorAll(revealSelector)).filter(
+    (node) => !node.classList.contains('reveal-ready')
+  )
+
+  if (!nodes.length) return
+
+  nodes.forEach((node) => {
+    node.classList.add('reveal-ready')
+  })
+
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  if (reduceMotion || typeof IntersectionObserver === 'undefined') {
+    nodes.forEach((node) => node.classList.add('is-visible'))
+    return
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, activeObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        activeObserver.unobserve(entry.target)
+      })
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px',
+    }
+  )
+
+  nodes.forEach((node, index) => {
+    node.style.setProperty('--reveal-delay', `${Math.min(index * 45, 240)}ms`)
+    const rect = node.getBoundingClientRect()
+    if (rect.top <= window.innerHeight * 0.88) {
+      node.classList.add('is-visible')
+      return
+    }
+    observer.observe(node)
+  })
+}
