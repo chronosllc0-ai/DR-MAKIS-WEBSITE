@@ -18,6 +18,7 @@ import {
   setupRevealTransitions,
   submitConsultationRequest,
 } from './utils.js'
+import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './utils.js'
 
 const FOOTER_SECTION_MAP = {
   services: {
@@ -626,7 +627,7 @@ function renderMainLayout(content) {
           <p class="modal-subtitle">Schedule a consultation with Dr. Makis to discuss your treatment options</p>
         </div>
         
-        <form class="consultation-form" data-consultation-form action="https://formspree.io/f/mblvaalz" method="POST">
+        <form class="consultation-form" data-consultation-form action="https://formspree.io/f/xzdjpnbk" method="POST">
           <div class="form-group">
             <label for="fullName">Full Name *</label>
             <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
@@ -694,6 +695,7 @@ export function mountHomeApp(root, content) {
 
   setupRevealTransitions(root)
   
+
   const programs = new Map(content.programs.map((item) => [item.id, item]))
   const products = new Map(content.products.map((item) => [item.id, item]))
 

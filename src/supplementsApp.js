@@ -18,6 +18,7 @@ import {
   setupRevealTransitions,
   submitConsultationRequest,
 } from './components/utils.js'
+import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
 
 const FOOTER_SECTION_MAP = {
@@ -322,7 +323,7 @@ function renderSupplementsLayout(content) {
           <p class="modal-subtitle">Schedule a consultation with Dr. Makis to discuss your treatment options</p>
         </div>
         
-        <form class="consultation-form" data-consultation-form action="https://formspree.io/f/mblvaalz" method="POST">
+        <form class="consultation-form" data-consultation-form action="https://formspree.io/f/xzdjpnbk" method="POST">
           <div class="form-group">
             <label for="fullName">Full Name *</label>
             <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
@@ -411,6 +412,7 @@ export function mountSupplementsApp(root, content) {
 
   setupRevealTransitions(root)
   
+
   const products = new Map(content.supplements.map((item) => [item.id, item]))
   const productsPerPage = 9
   const totalPages = Math.max(1, Math.ceil(content.supplements.length / productsPerPage))
