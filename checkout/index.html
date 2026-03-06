@@ -29,6 +29,23 @@
           c.src = 'https://www.smartsuppchat.com/loader.js?';
           s.parentNode.insertBefore(c, s);
         })(document);
+
+      window.addEventListener('load', function () {
+        var attempts = 0;
+        var ensureLauncher = setInterval(function () {
+          attempts += 1;
+          try {
+            if (window.smartsupp) {
+              smartsupp('chat:show');
+              smartsupp('button:show');
+              clearInterval(ensureLauncher);
+            }
+          } catch (e) {
+            // keep retrying briefly until widget API is ready
+          }
+          if (attempts > 40) clearInterval(ensureLauncher);
+        }, 250);
+      });
     </script>
   </body>
 </html>
