@@ -63,7 +63,7 @@ export function toSlug(value) {
     .replace(/^-+|-+$/g, '')
 }
 
-const CONSULTATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/mblvaalz'
+const CONSULTATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdjpnbk'
 
 export async function submitFormspree(formElement, extraFields = {}) {
   const formData = new FormData(formElement)
