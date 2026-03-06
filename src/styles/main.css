@@ -2582,9 +2582,6 @@ input {
     -webkit-backdrop-filter: none;
   }
 
-  /* Keep Smartsupp launcher floating and reachable from hero section on mobile */
-  iframe[src*="smartsuppchat.com"],
-  #smartsupp-widget-container {
   /* Keep Smartsupp launcher floating and reachable on mobile */
   #smartsupp-widget-container,
   [class*="smartsupp-widget"],
