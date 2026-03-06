@@ -2582,6 +2582,23 @@ input {
     -webkit-backdrop-filter: none;
   }
 
+  /* Keep Smartsupp launcher floating and reachable from hero section on mobile */
+  iframe[src*="smartsuppchat.com"],
+  #smartsupp-widget-container,
+  [class*="smartsupp-widget"],
+  [class*="smartsupp-launcher"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    right: 12px !important;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    z-index: 2147483000 !important;
+    pointer-events: auto !important;
+    transform: translate3d(0, 0, 0);
+  }
+
+  iframe[src*="smartsuppchat.com"] {
   iframe[src*="smartsuppchat.com"] {
     display: block !important;
     visibility: visible !important;
