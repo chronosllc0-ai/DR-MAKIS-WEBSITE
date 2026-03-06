@@ -7,7 +7,7 @@
   getTotals,
 } from './cartStore.js'
 import { icon } from './icons.js'
-import { escapeHtml, submitFormspree } from './utils.js'
+import { escapeHtml, setupRevealTransitions, submitFormspree } from './utils.js'
 
 function cartSummaryItems(items) {
   if (!items.length) {
@@ -116,6 +116,8 @@ export function mountCheckoutApp(root, content) {
     message = nextMessage
     const cart = getCart()
     root.innerHTML = checkoutTemplate(content, cart, message)
+
+    setupRevealTransitions(root)
 
     const form = root.querySelector('#checkout-form')
     if (!form) return
