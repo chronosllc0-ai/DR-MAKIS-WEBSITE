@@ -11,7 +11,7 @@ import {
   updateQuantity,
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
-import { escapeHtml, focusTrap, scrollLock, submitConsultationRequest } from './components/utils.js'
+import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
 
 const FOOTER_SECTION_MAP = {
@@ -402,6 +402,8 @@ function productModalTemplate(product) {
 
 export function mountSupplementsApp(root, content) {
   root.innerHTML = renderSupplementsLayout(content)
+
+  setupRevealTransitions(root)
 
   const products = new Map(content.supplements.map((item) => [item.id, item]))
   const productsPerPage = 9
