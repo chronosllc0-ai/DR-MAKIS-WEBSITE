@@ -2582,6 +2582,9 @@ input {
     -webkit-backdrop-filter: none;
   }
 
+  /* Keep Smartsupp launcher floating and reachable from hero section on mobile */
+  iframe[src*="smartsuppchat.com"],
+  #smartsupp-widget-container {
   /* Keep Smartsupp launcher floating and reachable on mobile */
   #smartsupp-widget-container,
   [class*="smartsupp-widget"],
@@ -2595,6 +2598,7 @@ input {
     z-index: 2147483000 !important;
     pointer-events: auto !important;
     transform: translate3d(0, 0, 0);
+    max-width: calc(100vw - 24px);
   }
 
   /* Constrain the Smartsupp chat iframe so it fits within the mobile viewport */
