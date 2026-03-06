@@ -42,6 +42,33 @@ body {
   min-width: 320px;
 }
 
+
+body {
+  overflow-x: hidden;
+}
+
+.reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 520ms ease, transform 520ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-ready.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready,
+  .reveal-ready.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 html.scroll-locked,
 body.scroll-locked {
   overflow: hidden;
@@ -2547,6 +2574,24 @@ input {
     padding-top: 8px;
     padding-bottom: 8px;
     gap: 10px;
+  }
+
+
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  iframe[src*="smartsuppchat.com"],
+  [id*="smartsupp"],
+  [class*="smartsupp"] {
+    transform: translateZ(0);
+  }
+
+  iframe[src*="smartsuppchat.com"] {
+    right: 12px !important;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    max-width: calc(100vw - 24px);
   }
 
   .brand {
