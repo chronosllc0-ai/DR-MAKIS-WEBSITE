@@ -2616,6 +2616,7 @@ input {
     transform: translate3d(0, 0, 0);
   }
 
+  iframe[src*="smartsuppchat.com"],
   [id*="smartsupp"],
   [class*="smartsupp"] {
     transform: translateZ(0);
