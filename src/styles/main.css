@@ -1929,55 +1929,6 @@ input {
   gap: 8px;
 }
 
-.floating-telegram,
-.floating-chat-placeholder,
-.floating-whatsapp,
-.floating-messenger {
-  position: fixed;
-  width: 72px;
-  height: 72px;
-  border-radius: 999px;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  z-index: 60;
-  box-shadow: 0 10px 18px rgba(10, 32, 42, 0.2);
-}
-
-.floating-telegram {
-  left: 16px;
-  bottom: 20px;
-  background: #169de8;
-}
-
-.floating-chat-placeholder {
-  right: 16px;
-  bottom: 20px;
-  background: #0cad75;
-}
-
-.floating-whatsapp {
-  right: 16px;
-  bottom: 100px;
-  background: #25d366;
-}
-
-.floating-messenger {
-  right: 16px;
-  bottom: 180px;
-  background: #0084ff;
-}
-
-.floating-telegram .icon,
-.floating-chat-placeholder .icon,
-.floating-whatsapp .icon,
-.floating-messenger .icon {
-  width: 30px;
-  height: 30px;
-}
-
 /* Supplements page specific styles */
 #supplements-hero {
   min-height: 300px;
@@ -2582,10 +2533,8 @@ input {
     -webkit-backdrop-filter: none;
   }
 
-  /* Keep Smartsupp launcher floating and reachable from hero section on mobile */
-  iframe[src*="smartsuppchat.com"],
-  #smartsupp-widget-container {
   /* Keep Smartsupp launcher floating and reachable on mobile */
+  iframe[src*="smartsuppchat.com"],
   #smartsupp-widget-container,
   [class*="smartsupp-widget"],
   [class*="smartsupp-launcher"] {

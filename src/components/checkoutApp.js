@@ -118,6 +118,7 @@ export function mountCheckoutApp(root, content) {
     root.innerHTML = checkoutTemplate(content, cart, message)
 
     setupRevealTransitions(root)
+    
 
     const form = root.querySelector('#checkout-form')
     if (!form) return

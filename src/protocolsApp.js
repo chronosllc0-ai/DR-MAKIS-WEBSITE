@@ -11,7 +11,13 @@ import {
   updateQuantity,
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
-import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './components/utils.js'
+import {
+  escapeHtml,
+  focusTrap,
+  scrollLock,
+  setupRevealTransitions,
+  submitConsultationRequest,
+} from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
 
 const FOOTER_SECTION_MAP = {
@@ -385,6 +391,7 @@ export function mountProtocolsApp(root, content) {
   root.innerHTML = renderProtocolsLayout(content)
 
   setupRevealTransitions(root)
+  
 
   const protocols = new Map(content.protocols.map((item) => [item.id, item]))
   const protocolsPerPage = 6
