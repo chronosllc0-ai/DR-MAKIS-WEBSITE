@@ -11,7 +11,7 @@
   updateQuantity,
 } from './cartStore.js'
 import { icon } from './icons.js'
-import { escapeHtml, focusTrap, scrollLock, submitConsultationRequest } from './utils.js'
+import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './utils.js'
 
 const FOOTER_SECTION_MAP = {
   services: {
@@ -685,6 +685,8 @@ function renderMainLayout(content) {
 
 export function mountHomeApp(root, content) {
   root.innerHTML = renderMainLayout(content)
+
+  setupRevealTransitions(root)
 
   const programs = new Map(content.programs.map((item) => [item.id, item]))
   const products = new Map(content.products.map((item) => [item.id, item]))
