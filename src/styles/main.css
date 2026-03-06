@@ -3613,3 +3613,104 @@ input {
     font-size: 0.84rem;
   }
 }
+
+/* ============================================================
+   Telegram Fixed Widget
+   ============================================================ */
+
+#tg-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #229ED9;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 12px 18px 12px 14px;
+  box-shadow: 0 4px 18px rgba(34, 158, 217, 0.45), 0 2px 8px rgba(0, 0, 0, 0.18);
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+  /* Ensure it never overlaps the Smartsupp button on the left */
+  pointer-events: auto;
+}
+
+#tg-widget:hover,
+#tg-widget:focus-visible {
+  background: #1a8cbf;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(34, 158, 217, 0.5), 0 3px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+#tg-widget:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(34, 158, 217, 0.4);
+}
+
+.tg-widget-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.tg-widget-icon svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.tg-widget-label {
+  display: inline;
+  line-height: 1;
+}
+
+/* On very small screens collapse to icon-only pill */
+@media (max-width: 400px) {
+  #tg-widget {
+    bottom: 18px;
+    right: 16px;
+    padding: 11px 13px;
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  .tg-widget-label {
+    display: none;
+  }
+
+  .tg-widget-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tg-widget-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Medium mobile: keep label but tighten spacing */
+@media (min-width: 401px) and (max-width: 640px) {
+  #tg-widget {
+    bottom: 20px;
+    right: 18px;
+    padding: 11px 16px 11px 12px;
+    font-size: 0.84rem;
+  }
+
+  .tg-widget-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+}
