@@ -18,7 +18,6 @@ import {
   setupRevealTransitions,
   submitConsultationRequest,
 } from './components/utils.js'
-import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
 
 const FOOTER_SECTION_MAP = {
@@ -884,4 +883,3 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('app')
   mountSupplementsApp(root, SITE_CONTENT)
 })
-

@@ -18,7 +18,6 @@ import {
   setupRevealTransitions,
   submitConsultationRequest,
 } from './utils.js'
-import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './utils.js'
 
 const FOOTER_SECTION_MAP = {
   services: {
