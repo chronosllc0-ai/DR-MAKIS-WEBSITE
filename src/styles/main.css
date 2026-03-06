@@ -2582,8 +2582,7 @@ input {
     -webkit-backdrop-filter: none;
   }
 
-  /* Keep Smartsupp launcher floating and reachable from hero section on mobile */
-  iframe[src*="smartsuppchat.com"],
+  /* Keep Smartsupp launcher floating and reachable on mobile */
   #smartsupp-widget-container,
   [class*="smartsupp-widget"],
   [class*="smartsupp-launcher"] {
@@ -2598,26 +2597,28 @@ input {
     transform: translate3d(0, 0, 0);
   }
 
-  iframe[src*="smartsuppchat.com"] {
+  /* Constrain the Smartsupp chat iframe so it fits within the mobile viewport */
   iframe[src*="smartsuppchat.com"] {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    right: 12px !important;
-    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
-    max-width: calc(100vw - 24px);
+    position: fixed !important;
+    right: 0 !important;
+    bottom: 0 !important;
     z-index: 2147483000 !important;
+    pointer-events: auto !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
     transform: translate3d(0, 0, 0);
-  iframe[src*="smartsuppchat.com"],
+  }
+
   [id*="smartsupp"],
   [class*="smartsupp"] {
     transform: translateZ(0);
-  }
-
-  iframe[src*="smartsuppchat.com"] {
-    right: 12px !important;
-    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
-    max-width: calc(100vw - 24px);
   }
 
   .brand {
