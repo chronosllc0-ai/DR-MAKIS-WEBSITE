@@ -123,6 +123,19 @@ function consultationCardTemplate(consultation) {
   `
 }
 
+function mobileQuickActionsTemplate() {
+  return `
+    <div class="mobile-drawer-actions" aria-label="Quick actions">
+      <button class="btn btn-secondary btn-mobile-drawer patient-portal" aria-label="Open patient portal">
+        Patient Portal
+      </button>
+      <button class="btn btn-primary btn-mobile-drawer book-consultation" aria-label="Book a consultation" data-open-consultation>
+        Book Consultation
+      </button>
+    </div>
+  `
+}
+
 function consultationModalTemplate(consultation) {
   const cardIcon = consultation.icon || 'calendar'
   return `
@@ -272,6 +285,7 @@ function renderConsultationsLayout(content) {
     <div class="overlay" data-overlay="nav" hidden></div>
     <aside class="side-drawer" data-drawer="nav" aria-hidden="true" aria-label="Navigation menu">
       <button class="icon-button close-btn" data-close-nav aria-label="Close menu">${icon('close')}</button>
+      ${mobileQuickActionsTemplate()}
       <nav>
         <a href="/" data-nav-link>Home</a>
         <a href="/supplements.html" data-nav-link>Supplements</a>
@@ -289,6 +303,17 @@ function renderConsultationsLayout(content) {
         <a href="/#contact" data-nav-link>Contact Us</a>
       </nav>
     </aside>
+
+    <a
+      class="telegram-float"
+      href="${escapeHtml(contact.telegramUrl)}"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Dr. William Makis on Telegram"
+    >
+      <span class="telegram-float__icon">${icon('telegram')}</span>
+      <span class="telegram-float__label">Telegram</span>
+    </a>
 
     <div class="overlay" data-overlay="cart" hidden></div>
     <aside class="side-drawer cart-drawer" data-drawer="cart" aria-hidden="true" aria-label="Cart drawer">
