@@ -9,6 +9,8 @@
     email: 'drmakis@zohomail.com',
     telegramHandle: '@drmakis',
     telegramUrl: 'https://t.me/drmakis',
+    telegramHandle: '@drwilliammakis01',
+    telegramUrl: 'https://t.me/drwilliammakis01',
     addressLines: ['Dr. William Makis Cancer Center', '1234 Medical Drive, Suite 500', 'Boston, MA 02115'],
     phone: '1-800-WILLIAM-MAKIS',
   },
@@ -659,7 +661,8 @@
     },
     filters: ["All Products", "In Stock", "Featured", "Out of Stock"],
     productCount: "19 Products"
-  },
+  },
+
   supplements: [
     {
       id: 'fenbendazole',

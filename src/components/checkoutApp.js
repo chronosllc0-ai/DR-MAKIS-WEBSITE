@@ -8,6 +8,7 @@
 } from './cartStore.js'
 import { icon } from './icons.js'
 import { escapeHtml, setupFloatingTelegramButton, setupRevealTransitions, setupSmartsuppWidget, submitFormspree } from './utils.js'
+import { escapeHtml, setupRevealTransitions, submitFormspree } from './utils.js'
 
 function cartSummaryItems(items) {
   if (!items.length) {
@@ -54,7 +55,7 @@ function checkoutTemplate(content, cart, statusMessage = '') {
         <section class="section-panel checkout-panel content-shell">
           <h1>Checkout</h1>
 
-          <form class="checkout-form" id="checkout-form" action="https://formspree.io/f/mblvaalz" method="POST" novalidate>
+          <form class="checkout-form" id="checkout-form" action="https://formspree.io/f/xzdjpnbk" method="POST" novalidate>
             <article class="form-card">
               <h2>Customer Information</h2>
               <label>
@@ -120,6 +121,7 @@ export function mountCheckoutApp(root, content) {
     setupRevealTransitions(root)
     setupFloatingTelegramButton(content.contact)
     setupSmartsuppWidget()
+    
 
     const form = root.querySelector('#checkout-form')
     if (!form) return
