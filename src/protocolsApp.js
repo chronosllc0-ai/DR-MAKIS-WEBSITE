@@ -286,17 +286,6 @@ function renderProtocolsLayout(content) {
       </nav>
     </aside>
 
-    <a
-      class="telegram-float"
-      href="${escapeHtml(contact.telegramUrl)}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat with Dr. William Makis on Telegram"
-    >
-      <span class="telegram-float__icon">${icon('telegram')}</span>
-      <span class="telegram-float__label">Telegram</span>
-    </a>
-
     <div class="overlay" data-overlay="cart" hidden></div>
     <aside class="side-drawer cart-drawer" data-drawer="cart" aria-hidden="true" aria-label="Cart drawer">
       <div class="drawer-head">
@@ -419,7 +408,6 @@ export function mountProtocolsApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
-  setupSmartsuppWidget()
   
   
 
