@@ -147,6 +147,28 @@ canvas {
   }
 }
 
+.reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 520ms ease, transform 520ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-ready.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready,
+  .reveal-ready.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 html.scroll-locked,
 body.scroll-locked {
   overflow: hidden;
@@ -911,6 +933,10 @@ input {
   border-radius: var(--radius-lg);
   padding: 18px;
   overflow: hidden;
+}
+
+.product-slide.is-active {
+  display: block;
 }
 
 .product-slide.is-active {
