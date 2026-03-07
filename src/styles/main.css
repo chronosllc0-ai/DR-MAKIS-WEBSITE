@@ -87,6 +87,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   gap: 24px;
 }
@@ -1019,6 +1020,7 @@ input {
   word-break: break-word;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1032,6 +1034,7 @@ input {
   word-break: break-word;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -2544,7 +2547,7 @@ input {
 
 @media (max-width: 900px) {
   #home.hero-section {
-    min-height: auto;
+    /* min-height removed - let element size naturally on smaller screens */
     padding: 24px 20px 34px;
   }
 
