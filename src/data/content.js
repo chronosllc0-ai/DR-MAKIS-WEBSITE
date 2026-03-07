@@ -9,6 +9,8 @@
     email: 'drmakis@zohomail.com',
     telegramHandle: '@drmakis',
     telegramUrl: 'https://t.me/drmakis',
+    telegramHandle: '@drwilliammakis01',
+    telegramUrl: 'https://t.me/drwilliammakis01',
     addressLines: ['Dr. William Makis Cancer Center', '1234 Medical Drive, Suite 500', 'Boston, MA 02115'],
     phone: '1-800-WILLIAM-MAKIS',
   },
@@ -589,6 +591,118 @@
       },
     ],
   },
+  testimonialsSection: {
+    kicker: 'TESTIMONIALS',
+    title: 'Stories of Hope & Recovery',
+    description:
+      'Hear from patients who have experienced the Dr. William Makis difference in their cancer journey.',
+    testimonials: [
+      {
+        id: 'jennifer-martinez',
+        quote:
+          'The team at Dr. William Makis gave me hope when I needed it most. Their personalized approach to my treatment made all the difference in my recovery journey.',
+        name: 'Jennifer Martinez',
+        role: 'Breast Cancer Survivor',
+        avatar: 'https://i.postimg.cc/VvRT0wvF/Screenshot-20260304-215438-Chrome-Beta.jpg',
+      },
+      {
+        id: 'linda-davis',
+        quote:
+          'From diagnosis to treatment, every step was handled with such care and professionalism. The innovative therapies here truly saved my life.',
+        name: 'Linda Davis',
+        role: 'Lung Cancer Patient',
+        avatar: 'https://i.postimg.cc/hjR3Cv7v/b865d335-b1f8-4c3a-bc6c-3583b094d29d.jpg',
+      },
+      {
+        id: 'leo-thompson',
+        quote:
+          'The support I received went beyond medical care. The whole team treated me like family and ensured I was comfortable throughout my treatment.',
+        name: 'Leo Thompson',
+        role: 'Colorectal Cancer Survivor',
+        avatar: 'https://i.postimg.cc/908bjQzL/501898ee-c038-4f21-96f5-a291205a0286.jpg',
+      },
+      {
+        id: 'michael-johnson',
+        quote:
+          'Dr. Makis and his team are exceptional. Their expertise and compassion made a difficult time much more manageable. Forever grateful.',
+        name: 'Michael Johnson',
+        role: 'Prostate Cancer Survivor',
+        avatar: 'https://i.postimg.cc/VL299TtK/3c49ce89-9283-4389-a8aa-d0b54fe4213e.jpg',
+      },
+      {
+        id: 'david-goose',
+        quote:
+          'The cutting-edge treatments and caring staff gave me a second chance at life. I cannot thank Dr. William Makis enough for their dedication.',
+        name: 'David Goose',
+        role: 'Lung Cancer Survivor',
+        avatar: 'https://i.postimg.cc/sDG72cL2/32d2409e-3478-4b0f-be6a-4460af96d028.jpg',
+      },
+      {
+        id: 'mary-davies',
+        quote:
+          'From my first consultation to my final treatment, the team was with me every step of the way. Their expertise and warmth made all the difference.',
+        name: 'Mary Davies',
+        role: 'Skin Cancer Survivor',
+        avatar: 'https://i.postimg.cc/3JjmsZb0/Screenshot-20260304-221340-Chrome-Beta.jpg',
+      },
+    ],
+  },
+  testimonialsSection: {
+    kicker: 'TESTIMONIALS',
+    title: 'Stories of Hope & Recovery',
+    description:
+      'Hear from patients who have experienced the Dr. William Makis difference in their cancer journey.',
+    testimonials: [
+      {
+        id: 'jennifer-martinez',
+        quote:
+          'The team at Dr. William Makis gave me hope when I needed it most. Their personalized approach to my treatment made all the difference in my recovery journey.',
+        name: 'Jennifer Martinez',
+        role: 'Breast Cancer Survivor',
+        avatar: 'https://i.postimg.cc/VvRT0wvF/Screenshot-20260304-215438-Chrome-Beta.jpg',
+      },
+      {
+        id: 'linda-davis',
+        quote:
+          'From diagnosis to treatment, every step was handled with such care and professionalism. The innovative therapies here truly saved my life.',
+        name: 'Linda Davis',
+        role: 'Lung Cancer Patient',
+        avatar: 'https://i.postimg.cc/hjR3Cv7v/b865d335-b1f8-4c3a-bc6c-3583b094d29d.jpg',
+      },
+      {
+        id: 'leo-thompson',
+        quote:
+          'The support I received went beyond medical care. The whole team treated me like family and ensured I was comfortable throughout my treatment.',
+        name: 'Leo Thompson',
+        role: 'Colorectal Cancer Survivor',
+        avatar: 'https://i.postimg.cc/908bjQzL/501898ee-c038-4f21-96f5-a291205a0286.jpg',
+      },
+      {
+        id: 'michael-johnson',
+        quote:
+          'Dr. Makis and his team are exceptional. Their expertise and compassion made a difficult time much more manageable. Forever grateful.',
+        name: 'Michael Johnson',
+        role: 'Prostate Cancer Survivor',
+        avatar: 'https://i.postimg.cc/VL299TtK/3c49ce89-9283-4389-a8aa-d0b54fe4213e.jpg',
+      },
+      {
+        id: 'david-goose',
+        quote:
+          'The cutting-edge treatments and caring staff gave me a second chance at life. I cannot thank Dr. William Makis enough for their dedication.',
+        name: 'David Goose',
+        role: 'Lung Cancer Survivor',
+        avatar: 'https://i.postimg.cc/sDG72cL2/32d2409e-3478-4b0f-be6a-4460af96d028.jpg',
+      },
+      {
+        id: 'mary-davies',
+        quote:
+          'From my first consultation to my final treatment, the team was with me every step of the way. Their expertise and warmth made all the difference.',
+        name: 'Mary Davies',
+        role: 'Skin Cancer Survivor',
+        avatar: 'https://i.postimg.cc/3JjmsZb0/Screenshot-20260304-221340-Chrome-Beta.jpg',
+      },
+    ],
+  },
   publicationsSection: {
     kicker: 'RESEARCH & PUBLICATIONS',
     title: 'Advancing Cancer Research Through Innovation',
@@ -659,7 +773,8 @@
     },
     filters: ["All Products", "In Stock", "Featured", "Out of Stock"],
     productCount: "19 Products"
-  },
+  },
+
   supplements: [
     {
       id: 'fenbendazole',
