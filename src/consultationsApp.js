@@ -10,7 +10,15 @@ import {
   updateQuantity,
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
-import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './components/utils.js'
+import {
+  escapeHtml,
+  focusTrap,
+  scrollLock,
+  setupFloatingTelegramButton,
+  setupRevealTransitions,
+  setupSmartsuppWidget,
+  submitConsultationRequest,
+} from './components/utils.js'
 
 const FOOTER_SECTION_MAP = {
   services: {
@@ -114,6 +122,19 @@ function consultationCardTemplate(consultation) {
         </div>
       </div>
     </article>
+  `
+}
+
+function mobileQuickActionsTemplate() {
+  return `
+    <div class="mobile-drawer-actions" aria-label="Quick actions">
+      <button class="btn btn-secondary btn-mobile-drawer patient-portal" aria-label="Open patient portal">
+        Patient Portal
+      </button>
+      <button class="btn btn-primary btn-mobile-drawer book-consultation" aria-label="Book a consultation" data-open-consultation>
+        Book Consultation
+      </button>
+    </div>
   `
 }
 
@@ -266,6 +287,7 @@ function renderConsultationsLayout(content) {
     <div class="overlay" data-overlay="nav" hidden></div>
     <aside class="side-drawer" data-drawer="nav" aria-hidden="true" aria-label="Navigation menu">
       <button class="icon-button close-btn" data-close-nav aria-label="Close menu">${icon('close')}</button>
+      ${mobileQuickActionsTemplate()}
       <nav>
         <a href="/" data-nav-link>Home</a>
         <a href="/supplements.html" data-nav-link>Supplements</a>
@@ -379,6 +401,9 @@ export function mountConsultationsApp(root, content) {
   root.innerHTML = renderConsultationsLayout(content)
 
   setupRevealTransitions(root)
+  setupFloatingTelegramButton(content.contact)
+  
+  
 
   const consultations = new Map(content.consultations.map((item) => [item.id, item]))
 

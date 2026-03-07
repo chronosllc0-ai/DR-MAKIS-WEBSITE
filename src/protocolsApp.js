@@ -11,7 +11,15 @@ import {
   updateQuantity,
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
-import { escapeHtml, focusTrap, scrollLock, setupRevealTransitions, submitConsultationRequest } from './components/utils.js'
+import {
+  escapeHtml,
+  focusTrap,
+  scrollLock,
+  setupFloatingTelegramButton,
+  setupRevealTransitions,
+  setupSmartsuppWidget,
+  submitConsultationRequest,
+} from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
 
 const FOOTER_SECTION_MAP = {
@@ -115,6 +123,19 @@ function paginationTemplate(currentPage, totalPages) {
         <button class="pagination-button" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
         <button class="pagination-button" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
       </div>
+    </div>
+  `
+}
+
+function mobileQuickActionsTemplate() {
+  return `
+    <div class="mobile-drawer-actions" aria-label="Quick actions">
+      <button class="btn btn-secondary btn-mobile-drawer patient-portal" aria-label="Open patient portal">
+        Patient Portal
+      </button>
+      <button class="btn btn-primary btn-mobile-drawer book-consultation" aria-label="Book a consultation" data-open-consultation>
+        Book Consultation
+      </button>
     </div>
   `
 }
@@ -247,6 +268,7 @@ function renderProtocolsLayout(content) {
     <div class="overlay" data-overlay="nav" hidden></div>
     <aside class="side-drawer" data-drawer="nav" aria-hidden="true" aria-label="Navigation menu">
       <button class="icon-button close-btn" data-close-nav aria-label="Close menu">${icon('close')}</button>
+      ${mobileQuickActionsTemplate()}
       <nav>
         <a href="/" data-nav-link>Home</a>
         <a href="/supplements.html" data-nav-link>Supplements</a>
@@ -385,6 +407,9 @@ export function mountProtocolsApp(root, content) {
   root.innerHTML = renderProtocolsLayout(content)
 
   setupRevealTransitions(root)
+  setupFloatingTelegramButton(content.contact)
+  
+  
 
   const protocols = new Map(content.protocols.map((item) => [item.id, item]))
   const protocolsPerPage = 6
