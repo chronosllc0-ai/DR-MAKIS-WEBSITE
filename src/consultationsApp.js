@@ -10,7 +10,15 @@ import {
   updateQuantity,
 } from './components/cartStore.js'
 import { icon } from './components/icons.js'
-import { escapeHtml, focusTrap, scrollLock, submitConsultationRequest } from './components/utils.js'
+import {
+  escapeHtml,
+  focusTrap,
+  scrollLock,
+  setupFloatingTelegramButton,
+  setupRevealTransitions,
+  setupSmartsuppWidget,
+  submitConsultationRequest,
+} from './components/utils.js'
 
 const FOOTER_SECTION_MAP = {
   services: {
@@ -378,6 +386,10 @@ function renderConsultationsLayout(content) {
 export function mountConsultationsApp(root, content) {
   root.innerHTML = renderConsultationsLayout(content)
 
+  setupRevealTransitions(root)
+  setupFloatingTelegramButton(content.contact)
+  setupSmartsuppWidget()
+  
   const consultations = new Map(content.consultations.map((item) => [item.id, item]))
 
   const overlays = {

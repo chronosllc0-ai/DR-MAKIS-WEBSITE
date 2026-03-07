@@ -42,6 +42,28 @@ body {
   min-width: 320px;
 }
 
+.reveal-ready {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 520ms ease, transform 520ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-ready.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready,
+  .reveal-ready.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 html.scroll-locked,
 body.scroll-locked {
   overflow: hidden;
@@ -797,27 +819,18 @@ input {
 
 .product-slides {
   position: relative;
-  min-height: 410px;
 }
 
 .product-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 160ms ease;
-}
-
-.product-slide.is-active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.product-slide {
+  display: none;
   background: #f7f9fb;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 18px;
+}
+
+.product-slide.is-active {
+  display: block;
 }
 
 .product-image {
@@ -1902,53 +1915,43 @@ input {
   gap: 8px;
 }
 
-.floating-telegram,
-.floating-chat-placeholder,
-.floating-whatsapp,
-.floating-messenger {
-  position: fixed;
+/* Floating contact widgets (fixed on desktop + mobile, open only on click) */
+.floating-telegram {
+  position: fixed !important;
+  left: 16px !important;
+  right: auto !important;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  top: auto !important;
   width: 72px;
   height: 72px;
   border-radius: 999px;
-  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  z-index: 60;
-  box-shadow: 0 10px 18px rgba(10, 32, 42, 0.2);
-}
-
-.floating-telegram {
-  left: 16px;
-  bottom: 20px;
   background: #169de8;
+  text-decoration: none;
+  border: none;
+  z-index: 2147482999 !important;
+  box-shadow: 0 10px 18px rgba(10, 32, 42, 0.2);
+  transform: none !important;
+  pointer-events: auto;
 }
 
-.floating-chat-placeholder {
-  right: 16px;
-  bottom: 20px;
-  background: #0cad75;
-}
-
-.floating-whatsapp {
-  right: 16px;
-  bottom: 100px;
-  background: #25d366;
-}
-
-.floating-messenger {
-  right: 16px;
-  bottom: 180px;
-  background: #0084ff;
-}
-
-.floating-telegram .icon,
-.floating-chat-placeholder .icon,
-.floating-whatsapp .icon,
-.floating-messenger .icon {
+.floating-telegram .icon {
   width: 30px;
   height: 30px;
+}
+
+.floating-telegram-ping {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff3b45;
+  box-shadow: 0 0 0 4px rgba(255, 59, 69, 0.2);
 }
 
 /* Supplements page specific styles */
@@ -2543,6 +2546,67 @@ input {
 }
 
 @media (max-width: 900px) {
+  .site-header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 10px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .brand {
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-text {
+    font-size: clamp(1rem, 5.3vw, 1.5rem);
+    line-height: 1.05;
+  }
+
+  .header-actions {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .language-selector {
+    padding: 6px 10px;
+    min-height: 36px;
+    font-size: 0.72rem;
+  }
+
+  .language-text {
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .icon-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cart-count {
+    min-width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+  }
+
+  .patient-portal,
+  .book-consultation {
+    display: none !important;
+  }
+
   #home.hero-section {
     min-height: auto;
     padding: 24px 20px 34px;
@@ -2573,6 +2637,47 @@ input {
     margin-top: 16px;
     min-height: 0;
     padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .content-shell {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #home.hero-section {
+    padding: 18px 14px 26px;
+  }
+
+  #home .section-pill {
+    padding: 6px 12px;
+    font-size: 0.84rem;
+  }
+
+  #home .hero-content h1 {
+    margin-top: 12px;
+    font-size: clamp(2rem, 13vw, 2.7rem);
+    line-height: 1.05;
+  }
+
+  #home .hero-content > p {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  #home .hero-cta-row {
+    margin-top: 16px;
+    gap: 8px;
+  }
+
+  #home .hero-metrics {
+    margin-top: 18px;
+    gap: 10px;
+  }
+
+  #home .hero-metrics .metric-tile {
+    padding: 14px 12px;
   }
 }
 
@@ -3437,3 +3542,43 @@ input {
   }
 }
 
+@media (max-width: 640px) {
+  #products.section-panel {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  #products .section-header {
+    margin-bottom: 14px;
+  }
+
+  #products .carousel-shell {
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+
+  #products .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  #products [data-product-prev] {
+    left: 8px;
+  }
+
+  #products [data-product-next] {
+    right: 8px;
+  }
+
+  #products .carousel-arrow:hover {
+    transform: translateY(calc(-50% - 1px));
+  }
+
+  #products .product-slide {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
