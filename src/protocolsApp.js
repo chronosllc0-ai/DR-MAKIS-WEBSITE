@@ -15,6 +15,9 @@ import {
   escapeHtml,
   focusTrap,
   scrollLock,
+  setupFloatingTelegramButton,
+  setupRevealTransitions,
+  setupSmartsuppWidget,
   setupRevealTransitions,
   submitConsultationRequest,
 } from './components/utils.js'
@@ -416,6 +419,9 @@ export function mountProtocolsApp(root, content) {
   root.innerHTML = renderProtocolsLayout(content)
 
   setupRevealTransitions(root)
+  setupFloatingTelegramButton(content.contact)
+  setupSmartsuppWidget()
+  
   
 
   const protocols = new Map(content.protocols.map((item) => [item.id, item]))

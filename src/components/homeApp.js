@@ -15,6 +15,9 @@ import {
   escapeHtml,
   focusTrap,
   scrollLock,
+  setupFloatingTelegramButton,
+  setupRevealTransitions,
+  setupSmartsuppWidget,
   setupRevealTransitions,
   submitConsultationRequest,
 } from './utils.js'
@@ -718,6 +721,9 @@ export function mountHomeApp(root, content) {
   root.innerHTML = renderMainLayout(content)
 
   setupRevealTransitions(root)
+  setupFloatingTelegramButton(content.contact)
+  setupSmartsuppWidget()
+  
   
 
   const programs = new Map(content.programs.map((item) => [item.id, item]))

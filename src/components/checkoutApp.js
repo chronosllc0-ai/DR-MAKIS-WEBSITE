@@ -7,6 +7,7 @@
   getTotals,
 } from './cartStore.js'
 import { icon } from './icons.js'
+import { escapeHtml, setupFloatingTelegramButton, setupRevealTransitions, setupSmartsuppWidget, submitFormspree } from './utils.js'
 import { escapeHtml, setupRevealTransitions, submitFormspree } from './utils.js'
 
 function cartSummaryItems(items) {
@@ -118,6 +119,8 @@ export function mountCheckoutApp(root, content) {
     root.innerHTML = checkoutTemplate(content, cart, message)
 
     setupRevealTransitions(root)
+    setupFloatingTelegramButton(content.contact)
+    setupSmartsuppWidget()
     
 
     const form = root.querySelector('#checkout-form')

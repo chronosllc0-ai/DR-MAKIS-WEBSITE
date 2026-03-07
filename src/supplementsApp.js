@@ -15,6 +15,9 @@ import {
   escapeHtml,
   focusTrap,
   scrollLock,
+  setupFloatingTelegramButton,
+  setupRevealTransitions,
+  setupSmartsuppWidget,
   setupRevealTransitions,
   submitConsultationRequest,
 } from './components/utils.js'
@@ -435,6 +438,9 @@ export function mountSupplementsApp(root, content) {
   root.innerHTML = renderSupplementsLayout(content)
 
   setupRevealTransitions(root)
+  setupFloatingTelegramButton(content.contact)
+  setupSmartsuppWidget()
+  
   
 
   const products = new Map(content.supplements.map((item) => [item.id, item]))
