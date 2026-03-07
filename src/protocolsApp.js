@@ -18,7 +18,6 @@ import {
   setupFloatingTelegramButton,
   setupRevealTransitions,
   setupSmartsuppWidget,
-  setupRevealTransitions,
   submitConsultationRequest,
 } from './components/utils.js'
 import { SITE_CONTENT } from './data/content.js'
