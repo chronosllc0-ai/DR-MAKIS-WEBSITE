@@ -166,6 +166,10 @@ export function setupFloatingTelegramButton(contact = {}) {
   if (!telegramUrl || typeof document === 'undefined') return
 
   let button = document.getElementById('floating-telegram-widget')
+  document.querySelectorAll('.floating-telegram').forEach((node) => {
+    if (node !== button) node.remove()
+  })
+
   if (!(button instanceof HTMLAnchorElement)) {
     button = document.createElement('a')
     button.id = 'floating-telegram-widget'
