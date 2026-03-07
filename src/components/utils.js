@@ -63,7 +63,7 @@ export function toSlug(value) {
     .replace(/^-+|-+$/g, '')
 }
 
-const CONSULTATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/mblvaalz'
+const CONSULTATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdjpnbk'
 
 export async function submitFormspree(formElement, extraFields = {}) {
   const formData = new FormData(formElement)
@@ -99,3 +99,137 @@ export async function submitFormspree(formElement, extraFields = {}) {
 export async function submitConsultationRequest(formElement) {
   return submitFormspree(formElement)
 }
+
+
+export function setupRevealTransitions(root = document) {
+  const container = root instanceof Element || root instanceof Document ? root : document
+  const revealSelector = [
+    '.section-panel',
+    '.category-card',
+    '.protocol-card',
+    '.expertise-card',
+    '.process-card',
+    '.testimonial-card',
+    '.video-card',
+    '.publication-card',
+    '.supplement-card',
+    '.consultation-card',
+    '.featured-card',
+  ].join(',')
+
+  const nodes = Array.from(container.querySelectorAll(revealSelector)).filter(
+    (node) => !node.classList.contains('reveal-ready')
+  )
+
+  if (!nodes.length) return
+
+  nodes.forEach((node) => {
+    node.classList.add('reveal-ready')
+  })
+
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  if (reduceMotion || typeof IntersectionObserver === 'undefined') {
+    nodes.forEach((node) => node.classList.add('is-visible'))
+    return
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, activeObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        activeObserver.unobserve(entry.target)
+      })
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px',
+    }
+  )
+
+  nodes.forEach((node, index) => {
+    node.style.setProperty('--reveal-delay', `${Math.min(index * 45, 240)}ms`)
+    const rect = node.getBoundingClientRect()
+    if (rect.top <= window.innerHeight * 0.88) {
+      node.classList.add('is-visible')
+      return
+    }
+    observer.observe(node)
+  })
+}
+
+
+export function setupFloatingTelegramButton(contact = {}) {
+  const telegramUrl = String(contact.telegramUrl || '').trim()
+  const telegramHandle = String(contact.telegramHandle || '@drmakis').trim()
+
+  if (!telegramUrl || typeof document === 'undefined') return
+
+  let button = document.getElementById('floating-telegram-widget')
+  document.querySelectorAll('.floating-telegram').forEach((node) => {
+    if (node !== button) node.remove()
+  })
+
+  if (!(button instanceof HTMLAnchorElement)) {
+    button = document.createElement('a')
+    button.id = 'floating-telegram-widget'
+    button.className = 'floating-telegram'
+    button.target = '_blank'
+    button.rel = 'noopener noreferrer'
+    button.href = telegramUrl
+    button.setAttribute('aria-label', `Message ${telegramHandle} on Telegram`)
+    button.innerHTML = `
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 3 3.7 10.2c-1 .4-1 1.8 0 2.2l4.2 1.5 1.5 4.2c.4 1 1.8 1 2.2 0L21 3z"></path>
+        <path d="M8 13.8 21 3"></path>
+      </svg>
+      <span class="floating-telegram-ping" aria-hidden="true"></span>
+    `
+    document.body.appendChild(button)
+  }
+
+  button.href = telegramUrl
+  button.style.position = 'fixed'
+  button.style.left = '16px'
+  button.style.right = 'auto'
+  button.style.bottom = 'calc(18px + env(safe-area-inset-bottom, 0px))'
+  button.style.top = 'auto'
+  button.style.display = 'inline-flex'
+  button.style.zIndex = '2147482999'
+}
+
+export function setupSmartsuppWidget() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return
+
+  const smartsuppKey = 'f25db0a326a4529dc1a69b9ad0601d1e54185b2a'
+  const scriptId = 'smartsupp-loader-script'
+  const existingScript = document.getElementById(scriptId)
+
+  window._smartsupp = window._smartsupp || {}
+  window._smartsupp.key = smartsuppKey
+
+  if (typeof window.smartsupp !== 'function') {
+    const queueFn = function smartsuppQueue(...args) {
+      queueFn._.push(args)
+    }
+    queueFn._ = []
+    window.smartsupp = queueFn
+  }
+
+  if (existingScript instanceof HTMLScriptElement) return
+
+  const script = document.createElement('script')
+  script.id = scriptId
+  script.type = 'text/javascript'
+  script.charset = 'utf-8'
+  script.async = true
+  script.src = 'https://www.smartsuppchat.com/loader.js?'
+
+  const firstScript = document.getElementsByTagName('script')[0]
+  if (firstScript?.parentNode) {
+    firstScript.parentNode.insertBefore(script, firstScript)
+  } else {
+    document.head.appendChild(script)
+  }
+}
+
