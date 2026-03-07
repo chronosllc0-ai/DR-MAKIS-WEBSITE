@@ -2727,8 +2727,8 @@ input {
 
 
   .site-header {
-    backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   /* Keep Smartsupp launcher floating and reachable on mobile */
