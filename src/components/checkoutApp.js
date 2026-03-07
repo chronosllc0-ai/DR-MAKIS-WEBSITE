@@ -8,7 +8,6 @@
 } from './cartStore.js'
 import { icon } from './icons.js'
 import { escapeHtml, setupFloatingTelegramButton, setupRevealTransitions, setupSmartsuppWidget, submitFormspree } from './utils.js'
-import { escapeHtml, setupRevealTransitions, submitFormspree } from './utils.js'
 
 function cartSummaryItems(items) {
   if (!items.length) {

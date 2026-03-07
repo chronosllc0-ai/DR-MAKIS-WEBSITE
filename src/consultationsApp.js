@@ -17,7 +17,6 @@ import {
   setupFloatingTelegramButton,
   setupRevealTransitions,
   setupSmartsuppWidget,
-  setupRevealTransitions,
   submitConsultationRequest,
 } from './components/utils.js'
 
