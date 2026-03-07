@@ -6,7 +6,7 @@
     tagline: 'Leading the way in advanced cancer diagnostics and personalized oncology care.',
   },
   contact: {
-    email: 'contact@makisweb.org',
+    email: 'drmakis@zohomail.com',
     telegramHandle: '@drmakis',
     telegramUrl: 'https://t.me/drmakis',
     addressLines: ['Dr. William Makis Cancer Center', '1234 Medical Drive, Suite 500', 'Boston, MA 02115'],
@@ -576,7 +576,7 @@
         quote:
           'The cutting-edge treatments and caring staff gave me a second chance at life. I cannot thank Dr. William Makis enough for their dedication.',
         name: 'David Goose',
-        role: 'Ovarian Cancer Survivor',
+        role: 'Lung Cancer Survivor',
         avatar: 'https://i.postimg.cc/sDG72cL2/32d2409e-3478-4b0f-be6a-4460af96d028.jpg',
       },
       {
