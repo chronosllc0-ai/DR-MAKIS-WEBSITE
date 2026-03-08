@@ -427,8 +427,8 @@ export function mountSupplementsApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
-  
-  
+  setupSmartsuppWidget()
+
 
   const products = new Map(content.supplements.map((item) => [item.id, item]))
   const productsPerPage = 9
