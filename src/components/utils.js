@@ -255,6 +255,19 @@ export function setupVapiWidget() {
 
   if (window[configId]) return
 
+  const pinLauncher = () => {
+    const launcher = document.getElementById('vapi-support-btn')
+    if (!(launcher instanceof HTMLElement)) return false
+    launcher.style.position = 'fixed'
+    launcher.style.right = '16px'
+    launcher.style.left = 'auto'
+    launcher.style.bottom = 'calc(18px + env(safe-area-inset-bottom, 0px))'
+    launcher.style.top = 'auto'
+    launcher.style.zIndex = '2147483000'
+    launcher.style.transform = 'none'
+    return true
+  }
+
   const configureWidget = () => {
     if (!window.vapiSDK?.run) return false
     window.vapiSDK.run({
@@ -270,6 +283,15 @@ export function setupVapiWidget() {
         },
       },
     })
+
+    let pinAttempts = 0
+    const pinInterval = window.setInterval(() => {
+      pinAttempts += 1
+      if (pinLauncher() || pinAttempts > 80) {
+        window.clearInterval(pinInterval)
+      }
+    }, 125)
+
     window[configId] = true
     return true
   }
