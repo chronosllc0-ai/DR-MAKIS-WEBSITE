@@ -238,3 +238,51 @@ export function setupSmartsuppWidget() {
   }
 }
 
+export function setupVapiWidget() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return
+
+  const scriptId = 'vapi-widget-loader-script'
+  const configId = 'vapi-widget-configured'
+
+  if (!document.getElementById(scriptId)) {
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js'
+    script.defer = true
+    script.async = true
+    document.head.appendChild(script)
+  }
+
+  if (window[configId]) return
+
+  const configureWidget = () => {
+    if (!window.vapiSDK?.run) return false
+    window.vapiSDK.run({
+      apiKey: '812deaed-dde9-4bb6-9b9a-bc5792fce3f2',
+      assistant: 'c1c422d7-6d9b-4bf4-8d3e-5e5d4f1b04ed',
+      config: {
+        position: 'bottom-right',
+        title: 'Talk to Emma',
+        subtitle: 'Consultation Coordinator',
+        theme: {
+          primary: '#1f4fd8',
+          secondary: '#ffffff',
+        },
+      },
+    })
+    window[configId] = true
+    return true
+  }
+
+  if (configureWidget()) return
+
+  const waitForSDK = window.setInterval(() => {
+    if (configureWidget()) {
+      window.clearInterval(waitForSDK)
+    }
+  }, 150)
+
+  window.setTimeout(() => {
+    window.clearInterval(waitForSDK)
+  }, 10000)
+}
