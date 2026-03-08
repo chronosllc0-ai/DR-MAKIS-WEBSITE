@@ -377,7 +377,6 @@ function renderProtocolsLayout(content) {
 function protocolModalTemplate(protocol) {
   return `
     <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
-    <img src="${escapeHtml(protocol.image)}" alt="${escapeHtml(protocol.title)}" class="modal-hero" />
     <div class="modal-body">
       <h2>${escapeHtml(protocol.title)}</h2>
       <p class="modal-subtitle">${escapeHtml(protocol.subtitle)}</p>
@@ -408,8 +407,8 @@ export function mountProtocolsApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
-  
-  
+  setupSmartsuppWidget()
+
 
   const protocols = new Map(content.protocols.map((item) => [item.id, item]))
   const protocolsPerPage = 6
