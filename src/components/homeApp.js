@@ -1,4 +1,4 @@
-﻿import {
+import {
   addToCart,
   clearCart,
   createProductCartItem,
@@ -710,6 +710,7 @@ export function mountHomeApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
+  setupSmartsuppWidget()
   
   
 

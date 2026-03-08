@@ -402,6 +402,7 @@ export function mountConsultationsApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
+  setupSmartsuppWidget()
   
   
 
