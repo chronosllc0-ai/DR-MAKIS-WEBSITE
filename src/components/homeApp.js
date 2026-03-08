@@ -17,7 +17,7 @@ import {
   scrollLock,
   setupFloatingTelegramButton,
   setupRevealTransitions,
-  setupSmartsuppWidget,
+  setupVapiWidget,
   submitConsultationRequest,
 } from './utils.js'
 
@@ -535,6 +535,7 @@ function renderMainLayout(content) {
           <a class="btn btn-outline-light" href="${escapeHtml(contact.telegramUrl)}" target="_blank" rel="noopener noreferrer">${icon(
     'telegram'
   )}${escapeHtml(content.recoveryCtaSection.secondaryButton)}</a>
+          <a class="btn btn-outline-light" href="tel:+19598810216" aria-label="Book Consultation With Emma by phone">✨ Book Consultation With Emma</a>
 
           <article class="contact-card">
             <h3>Contact Us</h3>
@@ -710,7 +711,7 @@ export function mountHomeApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
-  setupSmartsuppWidget()
+  setupVapiWidget()
 
 
   const programs = new Map(content.programs.map((item) => [item.id, item]))

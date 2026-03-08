@@ -2166,6 +2166,17 @@ input {
   box-shadow: 0 0 0 4px rgba(255, 59, 69, 0.2);
 }
 
+
+#vapi-support-btn {
+  position: fixed !important;
+  right: 16px !important;
+  left: auto !important;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  top: auto !important;
+  z-index: 2147483000 !important;
+  transform: none !important;
+}
+
 /* Supplements page specific styles */
 #supplements-hero {
   min-height: 300px;
