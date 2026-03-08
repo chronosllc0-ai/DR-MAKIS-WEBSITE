@@ -710,8 +710,8 @@ export function mountHomeApp(root, content) {
 
   setupRevealTransitions(root)
   setupFloatingTelegramButton(content.contact)
-  
-  
+  setupSmartsuppWidget()
+
 
   const programs = new Map(content.programs.map((item) => [item.id, item]))
   const products = new Map(content.products.map((item) => [item.id, item]))
