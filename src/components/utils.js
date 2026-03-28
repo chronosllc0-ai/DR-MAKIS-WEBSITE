@@ -161,7 +161,7 @@ export function setupRevealTransitions(root = document) {
 
 export function setupFloatingTelegramButton(contact = {}) {
   const telegramUrl = String(contact.telegramUrl || '').trim()
-  const telegramHandle = String(contact.telegramHandle || '@drmakis').trim()
+  const telegramHandle = String(contact.telegramHandle || '@drmakismd0').trim()
 
   if (!telegramUrl || typeof document === 'undefined') return
 
