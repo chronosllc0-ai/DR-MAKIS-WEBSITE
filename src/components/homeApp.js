@@ -367,7 +367,10 @@ function renderMainLayout(content) {
 
       <main id="top">
         <section class="hero-section section-panel content-shell" id="home">
-          <img src="${escapeHtml(hero.backgroundImage)}" alt="Dr. Makis hero placeholder" class="hero-bg" />
+          <img src="${escapeHtml(hero.backgroundImage)}" alt="Medical Freedom coastal hero background" class="hero-bg" />
+          <div class="hero-doctor-fade" aria-hidden="true">
+            <img src="${escapeHtml(hero.doctorImage || hero.previousBackgroundImage || hero.backgroundImage)}" alt="" />
+          </div>
           <div class="hero-content">
             <span class="section-pill">${escapeHtml(hero.badge)}</span>
             <h1>${escapeHtml(hero.title)}</h1>
