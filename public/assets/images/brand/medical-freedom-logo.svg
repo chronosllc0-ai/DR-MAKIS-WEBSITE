@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Medical Freedom logo</title>
+  <desc id="desc">A premium navy Medical Freedom emblem with a Florida shield and sunrise coast panels.</desc>
+  <defs>
+    <linearGradient id="coast" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7c66c"/>
+      <stop offset="0.36" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#083047"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#092338"/>
+      <stop offset="1" stop-color="#03101e"/>
+    </linearGradient>
+    <linearGradient id="doctor" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9f6ff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#0f9d92" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#020c16" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="88" fill="#051320"/>
+  <rect x="0" y="0" width="314" height="1024" fill="url(#coast)"/>
+  <path d="M-20 750 C86 626 168 623 314 516 L314 1024 L-20 1024 Z" fill="#02233a" opacity="0.72"/>
+  <path d="M-42 808 C112 642 205 697 330 565" fill="none" stroke="#eaffff" stroke-opacity="0.62" stroke-width="16"/>
+  <path d="M-25 853 C108 723 199 752 325 625" fill="none" stroke="#46d9ff" stroke-opacity="0.5" stroke-width="18"/>
+  <rect x="314" y="0" width="396" height="1024" fill="url(#navy)"/>
+  <line x1="314" y1="0" x2="314" y2="1024" stroke="#ffffff" stroke-opacity="0.38" stroke-width="5"/>
+  <line x1="710" y1="0" x2="710" y2="1024" stroke="#ffffff" stroke-opacity="0.38" stroke-width="5"/>
+  <rect x="710" y="0" width="314" height="1024" fill="url(#doctor)"/>
+  <circle cx="914" cy="230" r="152" fill="#f8d6bf" opacity="0.58"/>
+  <circle cx="882" cy="218" r="78" fill="#f0c8ad" opacity="0.45"/>
+  <path d="M752 1006 C786 732 892 644 1046 690 L1046 1024 Z" fill="#e8f7ff" opacity="0.74"/>
+  <path d="M817 640 L961 1024 L766 1024 C760 862 772 739 817 640 Z" fill="#b7ecf0" opacity="0.34"/>
+  <g filter="url(#softShadow)">
+    <path d="M514 280 L610 280 L610 326 L650 326 L650 384 L610 384 L610 436 C610 499 566 553 514 579 C462 553 418 499 418 436 L418 280 Z" fill="none" stroke="#f7fbff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M515 337 C550 328 585 333 620 352 C587 362 565 378 549 410 C539 388 526 371 501 361 C506 354 511 346 515 337 Z" fill="#f7fbff"/>
+    <path d="M551 405 C566 389 584 378 611 369 C598 392 593 422 596 459 C576 443 558 426 551 405 Z" fill="#f7fbff"/>
+  </g>
+  <text x="514" y="675" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="63" font-weight="700" letter-spacing="3" fill="#f5f8fb">MEDICAL</text>
+  <text x="514" y="756" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="63" font-weight="700" letter-spacing="3" fill="#f5f8fb">FREEDOM</text>
+</svg>

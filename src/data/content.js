@@ -2,7 +2,8 @@
   brand: {
     doctorName: 'Dr. William Makis',
     highlightedLastName: 'Makis',
-    logo: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
+    logo: '/assets/images/brand/medical-freedom-logo.svg',
+    previousLogo: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
     tagline: 'Leading the way in advanced cancer diagnostics and personalized oncology care.',
   },
   contact: {
@@ -22,7 +23,9 @@
     profileTitle: 'Dr. William Makis, MD',
     profileSubtitle: 'Nuclear Medicine Physician & Oncologist',
     profileHighlight: '500+ Research Publications',
-    backgroundImage: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
+    backgroundImage: '/assets/images/brand/hero-medical-freedom-v2.svg',
+    previousBackgroundImage: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
+    doctorImage: 'https://i.postimg.cc/HLmNLbWW/Screenshot-20260303-150533-X.jpg',
     stats: [
       {
         label: 'Patients Treated',

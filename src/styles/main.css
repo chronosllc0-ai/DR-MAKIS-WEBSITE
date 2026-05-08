@@ -4687,3 +4687,353 @@ input {
     border-radius: 18px;
   }
 }
+
+/* Landing page visual polish: premium Medical Freedom theme */
+body {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(15, 157, 146, 0.13), transparent 32rem),
+    radial-gradient(circle at 88% 18%, rgba(244, 179, 33, 0.12), transparent 30rem),
+    linear-gradient(180deg, #f8fbfa 0%, #edf4f5 48%, #f7faf8 100%);
+}
+
+.site-header {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid rgba(15, 52, 70, 0.1);
+  box-shadow: 0 18px 48px rgba(8, 32, 47, 0.08);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 12px 28px rgba(4, 18, 32, 0.16);
+}
+
+.brand-text {
+  letter-spacing: -0.03em;
+}
+
+.main-nav {
+  gap: clamp(14px, 1.6vw, 28px);
+}
+
+.nav-link {
+  position: relative;
+  color: #143044;
+  letter-spacing: 0.01em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  opacity: 0;
+  transform: scaleX(0.45);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.btn,
+.icon-button,
+.category-card,
+.expertise-card,
+.protocol-card,
+.process-card,
+.video-card,
+.publication-card,
+.stat-card,
+.cert-card,
+.testimonial-card,
+.form-card {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #13afa3, #08766f);
+  box-shadow: 0 16px 32px rgba(15, 157, 146, 0.28);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #17bdb0, #086a64);
+  transform: translateY(-2px);
+}
+
+.btn-secondary,
+.language-selector,
+.icon-button {
+  box-shadow: 0 10px 24px rgba(10, 31, 44, 0.06);
+}
+
+#home.hero-section {
+  isolation: isolate;
+  min-height: clamp(680px, 78vh, 860px);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: clamp(24px, 3vw, 42px);
+  box-shadow: 0 34px 90px rgba(5, 22, 36, 0.18);
+  background: #071727;
+  overflow: hidden;
+}
+
+#home.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(248, 253, 253, 0.94) 0%, rgba(248, 253, 253, 0.84) 34%, rgba(248, 253, 253, 0.3) 55%, rgba(5, 16, 29, 0.08) 100%),
+    radial-gradient(circle at 18% 20%, rgba(244, 179, 33, 0.28), transparent 24rem),
+    radial-gradient(circle at 44% 82%, rgba(15, 157, 146, 0.26), transparent 28rem);
+  pointer-events: none;
+}
+
+#home.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 0;
+  height: 38%;
+  background: linear-gradient(0deg, rgba(5, 16, 29, 0.2), transparent);
+  pointer-events: none;
+}
+
+.hero-bg {
+  z-index: -2;
+  opacity: 1;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.hero-doctor-fade {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(40%, 520px);
+  overflow: hidden;
+  opacity: 0.34;
+  mix-blend-mode: luminosity;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 100%);
+}
+
+.hero-doctor-fade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  transform: scale(1.04);
+}
+
+#home .hero-content {
+  padding-top: clamp(24px, 4vw, 72px);
+}
+
+#home .section-pill {
+  border-color: rgba(15, 157, 146, 0.22);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 14px 32px rgba(10, 31, 44, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+#home .hero-content h1 {
+  max-width: 720px;
+  margin-top: 18px;
+  font-size: clamp(3rem, 6vw, 6.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.075em;
+  color: #071727;
+  text-wrap: balance;
+}
+
+#home .hero-content > p {
+  margin-top: 20px;
+  max-width: 620px;
+  font-size: clamp(1.06rem, 1.35vw, 1.28rem);
+  color: #365061;
+}
+
+#home .hero-cta-row {
+  gap: 14px;
+}
+
+#home .hero-metrics .metric-tile,
+#home .hero-profile-card {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 22px 52px rgba(8, 33, 48, 0.12);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+
+#home .hero-metrics .metric-tile:hover,
+.expertise-card:hover,
+.protocol-card:hover,
+.process-card:hover,
+.publication-card:hover,
+.testimonial-card:hover,
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 70px rgba(8, 33, 48, 0.14);
+}
+
+.category-card {
+  min-height: 340px;
+  box-shadow: 0 22px 52px rgba(8, 33, 48, 0.12);
+}
+
+.category-image {
+  transition: transform 520ms ease, filter 520ms ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.06);
+  filter: saturate(1.1) contrast(1.08);
+}
+
+.category-overlay {
+  background:
+    linear-gradient(180deg, rgba(7, 24, 32, 0.08) 15%, rgba(7, 22, 34, 0.86) 100%),
+    radial-gradient(circle at 20% 20%, rgba(244, 179, 33, 0.28), transparent 16rem);
+}
+
+.expertise-card,
+.protocol-card,
+.process-card,
+.video-card,
+.publication-card,
+.stat-card,
+.cert-card,
+.testimonial-card,
+.form-card {
+  border-color: rgba(10, 54, 72, 0.09);
+  box-shadow: 0 18px 44px rgba(8, 33, 48, 0.08);
+}
+
+.expertise-card,
+.process-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 252, 251, 0.94)),
+    radial-gradient(circle at 100% 0%, rgba(15, 157, 146, 0.13), transparent 15rem);
+}
+
+.expertise-icon,
+.step-number,
+.publication-icon,
+#home .hero-metrics .metric-icon-chip,
+#home .hero-profile-icon {
+  background: linear-gradient(135deg, rgba(15, 157, 146, 0.18), rgba(244, 179, 33, 0.18));
+  border-color: rgba(15, 157, 146, 0.22);
+}
+
+.cta-panel {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: clamp(24px, 3vw, 38px);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.28), transparent 24rem),
+    radial-gradient(circle at 90% 10%, rgba(244, 179, 33, 0.32), transparent 20rem),
+    linear-gradient(135deg, #0e9f94, #06223a 72%);
+  box-shadow: 0 28px 72px rgba(6, 34, 58, 0.2);
+}
+
+.cta-panel::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.site-footer {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(15, 157, 146, 0.32), transparent 30rem),
+    radial-gradient(circle at 86% 18%, rgba(244, 179, 33, 0.18), transparent 24rem),
+    linear-gradient(135deg, #071725, #03101d 68%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.footer-brand {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.footer-brand .brand-logo {
+  width: 64px;
+  height: 64px;
+}
+
+.footer-columns > div {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.footer-columns a:hover,
+.legal-links a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .hero-doctor-fade {
+    width: 58%;
+    opacity: 0.18;
+  }
+
+  #home.hero-section::before {
+    background: linear-gradient(90deg, rgba(248, 253, 253, 0.96) 0%, rgba(248, 253, 253, 0.78) 68%, rgba(248, 253, 253, 0.3) 100%);
+  }
+
+  #home .hero-content h1 {
+    font-size: clamp(2.6rem, 11vw, 4.8rem);
+  }
+}
+
+@media (max-width: 560px) {
+  #home.hero-section {
+    min-height: auto;
+    border-radius: 24px;
+  }
+
+  #home .hero-content h1 {
+    letter-spacing: -0.06em;
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+  }
+}
