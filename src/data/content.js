@@ -546,7 +546,7 @@
           'The team at Dr. William Makis gave me hope when I needed it most. Their personalized approach to my treatment made all the difference in my recovery journey.',
         name: 'Jennifer Martinez',
         role: 'Breast Cancer Survivor',
-        avatar: '/assets/images/avatars/sarah-chen.webp',
+        avatar: 'https://i.postimg.cc/VvRT0wvF/Screenshot-20260304-215438-Chrome-Beta.jpg',
       },
       {
         id: 'linda-davis',
@@ -554,7 +554,7 @@
           'From diagnosis to treatment, every step was handled with such care and professionalism. The innovative therapies here truly saved my life.',
         name: 'Linda Davis',
         role: 'Lung Cancer Patient',
-        avatar: '/assets/images/avatars/jennifer-martinez.webp',
+        avatar: 'https://i.postimg.cc/hjR3Cv7v/b865d335-b1f8-4c3a-bc6c-3583b094d29d.jpg',
       },
       {
         id: 'leo-thompson',
@@ -562,7 +562,7 @@
           'The support I received went beyond medical care. The whole team treated me like family and ensured I was comfortable throughout my treatment.',
         name: 'Leo Thompson',
         role: 'Colorectal Cancer Survivor',
-        avatar: '/assets/images/avatars/linda-davis.webp',
+        avatar: 'https://i.postimg.cc/908bjQzL/501898ee-c038-4f21-96f5-a291205a0286.jpg',
       },
       {
         id: 'michael-johnson',
@@ -570,7 +570,7 @@
           'Dr. Makis and his team are exceptional. Their expertise and compassion made a difficult time much more manageable. Forever grateful.',
         name: 'Michael Johnson',
         role: 'Prostate Cancer Survivor',
-        avatar: '/assets/images/avatars/leo-thompson.webp',
+        avatar: 'https://i.postimg.cc/VL299TtK/3c49ce89-9283-4389-a8aa-d0b54fe4213e.jpg',
       },
       {
         id: 'david-goose',
@@ -578,7 +578,7 @@
           'The cutting-edge treatments and caring staff gave me a second chance at life. I cannot thank Dr. William Makis enough for their dedication.',
         name: 'David Goose',
         role: 'Lung Cancer Survivor',
-        avatar: '/assets/images/avatars/michael-johnson.webp',
+        avatar: 'https://i.postimg.cc/sDG72cL2/32d2409e-3478-4b0f-be6a-4460af96d028.jpg',
       },
       {
         id: 'mary-davies',
@@ -586,7 +586,7 @@
           'From my first consultation to my final treatment, the team was with me every step of the way. Their expertise and warmth made all the difference.',
         name: 'Mary Davies',
         role: 'Skin Cancer Survivor',
-        avatar: '/assets/images/avatars/david-goose.webp',
+        avatar: 'https://i.postimg.cc/3JjmsZb0/Screenshot-20260304-221340-Chrome-Beta.jpg',
       },
     ],
   },
