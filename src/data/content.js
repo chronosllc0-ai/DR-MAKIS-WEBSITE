@@ -358,7 +358,7 @@
         'Start with 0.5ml (25mg CBD) once daily. May increase to 1ml twice daily as needed.',
       ingredients: 'Full-spectrum hemp extract, MCT coconut oil, natural terpenes',
       size: '30ml bottle (1500mg CBD)',
-      image: '/assets/images/landing/product-cbd-oil.webp',
+      image: 'https://i.postimg.cc/yNZ3dSNr/full-spectrum-cbd-oil.png',
     },
     {
       id: 'curcumin',
@@ -379,7 +379,7 @@
         'Take 2 capsules daily with meals. For enhanced absorption, take with black pepper or fatty foods.',
       ingredients: 'Curcumin extract (95% curcuminoids), BioPerine black pepper extract, vegetable capsule',
       size: '180 capsules (3 month supply)',
-      image: '/assets/images/landing/product-curcumin.webp',
+      image: 'https://i.postimg.cc/CMPh3xhH/Screenshot-20260303-145321-Google(1).jpg',
     },
     {
       id: 'fenbendazole',
@@ -400,7 +400,7 @@
         'Consult with your healthcare provider for personalized dosing recommendations. Common protocols vary.',
       ingredients: 'Fenbendazole 222mg, microcrystalline cellulose, vegetable capsule',
       size: '30 capsules per bottle',
-      image: '/assets/images/landing/product-fenbendazole.webp',
+      image: 'https://i.postimg.cc/05BvtXnH/FENBEN-CAPS.jpg',
     },
     {
       id: 'ivermectin',
@@ -422,7 +422,7 @@
       ingredients:
         'Ivermectin (3mg or 12mg), lactose monohydrate, microcrystalline cellulose',
       size: '10 tablets per blister pack',
-      image: '/assets/images/landing/product-ivermectin.webp',
+      image: 'https://i.postimg.cc/28dDzjms/5333.jpg',
     },
     {
       id: 'artemisinin',
@@ -443,7 +443,7 @@
         'Take 1-2 capsules on an empty stomach. Cycle usage: 2 weeks on, 1 week off recommended.',
       ingredients: 'Artemisinin extract 500mg, rice flour, vegetable capsule',
       size: '60 capsules per bottle',
-      image: '/assets/images/landing/product-artemisinin.webp',
+      image: 'https://i.postimg.cc/rySb4hbk/71Y6k-Mp-SCL-jpg-BO30-255-255-255-UF750-750-SR1910-1000-0-C-QL100.jpg',
     },
     {
       id: 'methylene-blue',
@@ -464,7 +464,7 @@
         'Start with 1-2 drops (0.5-1mg) in water. May gradually increase. Do not exceed recommended amounts.',
       ingredients: 'Methylene blue USP 1% solution, purified water',
       size: '10ml dropper bottle (10mg/ml)',
-      image: '/assets/images/landing/product-methylene-blue.webp',
+      image: 'https://i.postimg.cc/x8Y6g27m/71fa-PF2El-IL-AC-UF1000-1000-QL80.jpg',
     },
   ],
   educationalSection: {
