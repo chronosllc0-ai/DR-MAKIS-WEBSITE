@@ -3883,7 +3883,6 @@ input {
   height: 170px;
   object-fit: cover;
   border-radius: 12px;
-  border: 1px dashed #91d4e1;
   background: linear-gradient(145deg, #f2fcff 0%, #d9f4f9 100%);
 }
 
