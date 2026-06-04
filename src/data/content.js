@@ -530,7 +530,7 @@
         status: 'Verified',
         description:
           "Doctorem Medicinae et Chirurgiae Magistrum - The highest medical degree awarded by McGill University, one of Canada's most prestigious medical schools.",
-        image: '/assets/images/landing/certification-mdcm.webp',
+        image: 'https://i.postimg.cc/YS6gRWwP/Screenshot-20260303-142523-Chrome-Beta.jpg',
       },
     ],
   },
