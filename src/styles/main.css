@@ -4467,11 +4467,10 @@ input {
 
   .stat-item strong {
     font-size: 0.9rem;
-    white-space: nowrap;
   }
 
   .stat-item span {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
   }
 
   .protocol-stats {
