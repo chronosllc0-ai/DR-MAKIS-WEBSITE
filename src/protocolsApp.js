@@ -235,7 +235,7 @@ function renderProtocolsLayout(content) {
 
       <footer class="site-footer full-bleed content-shell" id="footer">
         <div class="footer-brand">
-          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" />
+          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" loading="lazy" />
           <div>
             <h2>Dr. William <strong>Makis</strong></h2>
             <p>${escapeHtml(brand.tagline)}</p>
@@ -394,7 +394,7 @@ function protocolModalTemplate(protocol) {
   return `
     <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
     <div class="modal-media-wrap modal-media-wrap--protocol">
-      <img src="${escapeHtml(protocol.image)}" alt="${escapeHtml(protocol.title)}" class="modal-hero" />
+      <img src="${escapeHtml(protocol.image)}" alt="${escapeHtml(protocol.title)}" class="modal-hero" loading="lazy" />
       <span class="pill-tag">${escapeHtml(protocol.difficulty)}</span>
       <span class="protocol-modal-duration">${icon('clock')}${escapeHtml(protocol.duration)}</span>
     </div>
@@ -543,7 +543,7 @@ export function mountProtocolsApp(root, content) {
   function cartItemTemplate(item) {
     return `
       <article class="cart-item" data-cart-id="${escapeHtml(item.id)}" data-cart-type="${escapeHtml(item.type)}">
-        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" />
+        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" />
         <div class="cart-item-info">
           <span class="type-pill">${escapeHtml(item.type === 'product' ? 'Product' : content.misc.cartTypeLabel)}</span>
           <h3>${escapeHtml(item.title)}</h3>

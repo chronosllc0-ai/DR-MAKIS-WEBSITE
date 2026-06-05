@@ -116,7 +116,7 @@ function supplementCardTemplate(supplement) {
       </div>
       <div class="protocol-body">
         <div class="supplement-image-placeholder">
-          <img src="${escapeHtml(supplement.image)}" alt="${escapeHtml(supplement.name)} placeholder" class="supplement-placeholder-visual" />
+          <img src="${escapeHtml(supplement.image)}" alt="${escapeHtml(supplement.name)} placeholder" class="supplement-placeholder-visual" loading="lazy" />
           <span class="supplement-image-label">In Stock</span>
         </div>
         ${ratingTemplate(supplement.id)}
@@ -262,7 +262,7 @@ function renderSupplementsLayout(content) {
 
       <footer class="site-footer full-bleed content-shell" id="footer">
         <div class="footer-brand">
-          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" />
+          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" loading="lazy" />
           <div>
             <h2>Dr. William <strong>Makis</strong></h2>
             <p>${escapeHtml(brand.tagline)}</p>
@@ -420,7 +420,7 @@ function productModalTemplate(product) {
     <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
     <div class="modal-product-layout">
       <div class="modal-product-media">
-        <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="modal-product-image" />
+        <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="modal-product-image" loading="lazy" />
       </div>
       <div class="modal-body modal-product-body">
         <span class="modal-card-eyebrow">Supplement detail</span>
@@ -543,7 +543,7 @@ export function mountSupplementsApp(root, content) {
   function cartItemTemplate(item) {
     return `
       <article class="cart-item" data-cart-id="${escapeHtml(item.id)}" data-cart-type="${escapeHtml(item.type)}">
-        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" />
+        <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" />
         <div class="cart-item-info">
           <span class="type-pill">${escapeHtml(item.type === 'product' ? 'Product' : content.misc.cartTypeLabel)}</span>
           <h3>${escapeHtml(item.title)}</h3>
