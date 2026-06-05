@@ -235,7 +235,7 @@ function renderProtocolsLayout(content) {
 
       <footer class="site-footer full-bleed content-shell" id="footer">
         <div class="footer-brand">
-          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" loading="lazy" />
+          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" />
           <div>
             <h2>Dr. William <strong>Makis</strong></h2>
             <p>${escapeHtml(brand.tagline)}</p>
@@ -394,7 +394,7 @@ function protocolModalTemplate(protocol) {
   return `
     <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
     <div class="modal-media-wrap modal-media-wrap--protocol">
-      <img src="${escapeHtml(protocol.image)}" alt="${escapeHtml(protocol.title)}" class="modal-hero" loading="lazy" />
+      <img src="${escapeHtml(protocol.image)}" alt="${escapeHtml(protocol.title)}" class="modal-hero" />
       <span class="pill-tag">${escapeHtml(protocol.difficulty)}</span>
       <span class="protocol-modal-duration">${icon('clock')}${escapeHtml(protocol.duration)}</span>
     </div>

@@ -629,7 +629,7 @@ function renderMainLayout(content) {
 
       <footer class="site-footer full-bleed content-shell" id="footer">
         <div class="footer-brand">
-          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" loading="lazy" />
+          <img src="${escapeHtml(brand.logo)}" alt="Dr. Makis" class="brand-logo" />
           <div>
             <h2>Dr. William <strong>Makis</strong></h2>
             <p>${escapeHtml(brand.tagline)}</p>
@@ -879,7 +879,7 @@ export function mountHomeApp(root, content) {
       <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
       <div class="modal-product-layout">
         <div class="modal-product-media">
-          <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="modal-product-image" loading="lazy" />
+          <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" class="modal-product-image" />
         </div>
         <div class="modal-body modal-product-body">
           <span class="modal-card-eyebrow">Supplement detail</span>
@@ -915,7 +915,7 @@ export function mountHomeApp(root, content) {
     return `
       <button class="icon-button close-btn modal-close" data-close-modal aria-label="Close details">${icon('close')}</button>
       <div class="modal-media-wrap">
-        <img src="${escapeHtml(program.image)}" alt="${escapeHtml(program.title)}" class="modal-hero" loading="lazy" />
+        <img src="${escapeHtml(program.image)}" alt="${escapeHtml(program.title)}" class="modal-hero" />
         <span class="pill-tag">${escapeHtml(program.badge)}</span>
       </div>
       <div class="modal-body modal-body--detail">
